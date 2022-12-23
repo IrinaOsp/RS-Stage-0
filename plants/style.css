@@ -1,0 +1,85 @@
+:root {
+    --green-color: #499A18;
+    --orange-color: #E06733;
+    --light-grey-color: #717171;
+    --gark-grey-color: #636060;
+    --beige-color: #EDF2EC;
+    --black-color: #010201;
+    
+  }
+
+  @font-face {
+    font-family: Inika; /*nav font*/
+    src: url("assets/fonts/Inika/"); 
+  }
+  @font-face {
+    font-family: Inter;
+    src: url("assets/fonts/Inter/");
+  }
+
+  * {
+    font: 400 Inter;
+    background-color: var(--beige-color);
+    Box-sizing: border-box; 
+  }
+
+
+
+  .header {
+    
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .img-logo {
+    margin-left: 111px;
+  }
+
+  .nav-container {
+    display: flex;
+    flex-basis: 87%;
+  }
+
+  .nav {
+    display: flex;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    /*position: absolute;
+    right: 109px;*/
+  }
+
+  .nav-item {
+    flex-basis: 42px;
+  }
+
+  .nav-link {
+
+    font: normal 400 16px Inika;
+    color: var(--black-color);
+    text-decoration: none;    
+  }
+
+  h1 {
+    font: 700 45px Inter;
+    color: var(--light-grey-color);
+  }
+
+  h1 span {
+    color: var(--green-color);
+  }
+
