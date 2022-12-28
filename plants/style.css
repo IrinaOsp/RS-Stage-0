@@ -49,7 +49,7 @@
 
   button {
     border-radius: 10px;
-    min-width: 161px;
+    width: 161px;
     height: 50px;
     border: 1px solid var(--orange-color);
     font: normal 400 20px/26px Inika;
@@ -64,7 +64,7 @@
 
   button:hover {
     background-color: var(--orange-color);
-    color: #ffffff;
+    color: #fff;
     }
 
 .button-learn {
@@ -83,7 +83,7 @@
 
 .button-learn:hover {
         background-color: var(--orange-color);
-        color: #ffffff;
+        color: #fff;
     }
 
    .header-container {
@@ -110,12 +110,7 @@
     list-style: none;
   }
 
-  .nav-item {
-    
-  }
-
   .nav-link {
-
     font: normal 400 16px/50px Inika;
     color: var(--black-color);
     text-decoration: none;    
@@ -154,11 +149,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #ffffff;
+    background-color: #fff;
   }
 
   .about-container * {
-    background-color: #ffffff;
+    background-color: #fff;
   }
 
   .about-container h2 {
@@ -190,7 +185,7 @@
 
   #service {
     margin-top: 40px;
-    margin-bottom: 64px;
+    margin-bottom: 73px;
   }
 
   .services-content {
@@ -251,69 +246,178 @@
     border-radius: 0px 0px 20px 20px;
     text-align: center;
   }
-  #prices * {
-    background-color: #ffffff;
+
+  #prices {
+    background-color: #fff;
+    height: 560px;
   }
+
   #prices h2 {
     font: normal 700 40px/48px Inter;
+    background-color: #fff;
   }
 
   .prices-container {
     position: relative;
-    padding-top: 40px;
-    padding-left: 109px;
-    padding-right: 109px;
+    padding: 40px 109px 115px 109px;
     display: flex;
+    align-content: space-between;
     flex-wrap: wrap;
     justify-content: space-between;
+    background-color: #fff;
   }
 
   .prices-container > p {
     font: normal 700 40px/50px Inter;
     text-align: right;
     margin-left: 635px;
+    background-color: #fff;
   }
 
   .span-gardeners {
     color: #499A18;
+    background-color: #fff;
   }
 
   .prices-container > button {    
     position: absolute;
     top: 181px;
     right: 109px;
+    background-color: #fff;
   }
 
   .prices-container > img {    
     position: absolute;
     top: 270px;
     right: 109px;
+    background-color: #fff;
   }
-
-
 
   .prices-buttons {
     border: 1px solid #E3E1D5;
     border-radius: 20px;
     padding: 34px 41px;
-    margin-bottom: 129px;
     width: 338px;
   }
 
-
-
   .accordion {
-    background-color: #EDF2EC;
-    color: #000000;
-    cursor: pointer;
-    width: 250px;
+    border: 1px solid #E3E1D5;
     border-radius: 20px;
-    text-align: left;
-    outline: none;
-    font: normal 700 20px/20px Inter;
-    transition: 0.4s;
+    padding: 34px 41px;
+    background-color: #fff;
+    width: 332px;
+    height: 282.01px;
+    margin-top: 9px;
   }
-  
+
+  .accordion__item {
+    margin-bottom: 32px;  /*дает расстояние между кнопками*/
+    background-color: #fff;
+  }
+
+  .accordion__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: 250px;
+    padding-left: 40px;  
+    /*padding-top: 16px;*/
+    color: #000;
+    font: normal 700 20px/20px Inter;
+    background-color: #EDF2EC;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.1s linear;
+  }
+
+  .accordion__header::after {   /*полож треугольника*/
+    flex-shrink: 0;
+    width: 60px; /*расстояние от левого края*/
+    height: 18px;
+    margin-left: auto;
+    background-image: url(./assets/img/accordion_btn.svg);
+    background-repeat: no-repeat;
+    background-size: 1rem;
+    content: "";
+    transition: transform 0.1s linear;
+  }
+
+  .accordion__item_show .accordion__header::after,
+  .accordion__item_slidedown .accordion__header::after {   /*разворот треуг на 180*/
+    background-image: url(./assets/img/accordion_btn_open.svg);
+    /*transform: rotate(-180deg);*/
+  }
+    
+    .accordion__item_show .accordion__header { /*красит в зеленый открытый хэдер*/
+    background-color: #D6E7D2;
+      border-bottom: 0.5px solid #AEA1A1; /*палочка*/
+    }
+
+  .accordion__header:hover {  /*цвет кнопки при наведении*/
+    background-color: #D6E7D2;
+  }
+
+  .accordion__item:not(.accordion__item_show) .accordion__header { /*радиус низа кнопки до открытия*/
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+
+  .accordion__content {  /*формат открытого контента*/
+    padding: 6px 41px 12px 40px;
+    height: 104px;
+    width: 250px;
+    background: #D6E7D2;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    font: normal 300 10px/10px Inter;
+  }
+
+  .accordion__content_text {
+    font: normal 300 10px/10px Inter;
+    color: var(--light-grey-color);
+    background-color: #D6E7D2;
+    padding-top: 2px;
+    padding-bottom: 0;
+  }
+
+  .accordion__content_span {
+    font: normal 700 16px/20px Inter;
+    color: var(--orange-color);
+    background-color: #D6E7D2;
+  }
+
+  .accordion__content_price {
+    font: normal 700 16px/20px Inter;
+    color: #000;
+    background-color: #D6E7D2;
+    padding-top: 4px;
+    padding-bottom: 0;
+  }
+
+  .accordion__content_button {
+    font: normal 700 14px/20px Inter;
+    color: var(--light-grey-color);
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 86px;
+    max-height: 25px;
+    margin-top: 10px;    
+  }
+
+
+         
+    /*скрывает контент*/
+  .accordion__item:not(.accordion__item_show) .accordion__body {
+    display: none;
+  }
+
+
+  /*
   .active, .accordion:hover {
     background-color: #D6E7D2; 
   }
@@ -328,15 +432,9 @@
   
   .active:after {
     content: "\2212";
-  }
+  }*/
   
-  .panel {
-    padding: 0 18px;
-    background-color: #ffffff;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-  }
+
 
 
   .contacts-container {
@@ -352,20 +450,20 @@
 
 
   .footer {
-    background-color: #ffffff;
+    background-color: #fff;
     padding: 40px 109px;
   }
   .footer-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
+    background-color: #fff;
   }
 
   footer * {
-    background-color: #ffffff;
+    background-color: #fff;
     font: normal 400 20px/50px Inter;
-    color: #000000;
+    color: #000;
     text-decoration: none;
   }
 
