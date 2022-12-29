@@ -88,6 +88,7 @@
 
    .header-container {
     display: flex;
+    justify-content: space-between;
     margin: 0px auto;
     padding: 42px 109px 42px 111px;
     min-height: 50px;
@@ -100,20 +101,29 @@
 
   .nav-container {
     display: flex;
-    flex-basis: 60vw; /*уточнить*/
+    justify-content: flex-end;
+    width: 498px;
+    align-items: center;    
   }
 
   .nav-list {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     list-style: none;
+  }
+
+  .nav-item {
+    margin-left: 46px;
   }
 
   .nav-link {
     font: normal 400 16px/50px Inika;
     color: var(--black-color);
     text-decoration: none;    
+  }
+
+  .nav-link:hover {
+    color: var(--orange-color);   
   }
 
   h1 {
@@ -417,26 +427,6 @@
   }
 
 
-  /*
-  .active, .accordion:hover {
-    background-color: #D6E7D2; 
-  }
-
-  .accordion:after {
-    content: ;
-    color: #777;
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
-  }
-  
-  .active:after {
-    content: "\2212";
-  }*/
-  
-
-
-
   .contacts-container {
     margin: 53px 109px 0px 109px;
     display: flex;
@@ -444,8 +434,68 @@
   .contacts-container h2 {
     font: normal 700 40px/50px Inika;
     color: var(--green-color);
+    margin-top: 10px;
+    margin-left: 113px;
+    width: ;
   }
 
+  .form-select {
+    margin-top: 95px;
+    margin-left: 64px;
+    
+  }
+
+  .select-city {
+    appearance: none; /*убирает стандартное форматирование*/
+    outline: none;
+    background-color: #D6E7D2;
+    border: none;    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font: normal 400 20px/40px Inter;
+    letter-spacing: 0.05em;
+    color: var(--light-grey-color);
+    height: 50px;
+    width: 450px;
+    padding-left: 20px;
+    background-image: url('./assets/img/accordion_btn_contact_unact.svg');
+    background-position: 
+    calc(100% - 31px) calc(1em - 2px),
+    calc(100% - 10px) calc(1em + 2px),
+    calc(100% - .1em) .1em;
+    background-repeat: no-repeat;
+  }
+
+    .select-city:focus {
+    background-image: url('./assets/img/accordion_btn_contact_act.svg');
+    background-position: 
+    calc(100% - 31px) calc(1em - 2px),
+    calc(100% - 10px) calc(1em + 2px),
+    calc(100% - .1em) .1em;
+    background-repeat: no-repeat;
+  }
+
+  .select-city:active {
+    background: #C1E698;
+  }
+
+  .select-city:hover {
+    background-color: #C1E698;
+  }
+
+
+  .select-option { /*строки*/
+    font: normal 400 16px/40px Inter;
+    color: var(--green-color);
+    height: 35px;
+    width: 380px;
+    padding: 35px;
+    background-color: #DCE9D9;
+    border: none;
+  }
+
+  .select-option:hover {
+    background-color: #C1E698;
+  }
 
 
 
