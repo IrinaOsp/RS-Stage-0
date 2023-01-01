@@ -110,7 +110,8 @@
             </div>
          </div>
     </header>
-    <main>
+    <main>        
+        <div class="main-container">
         <section id="welcome">
             <div class="welcome-container">
                 <div>
@@ -209,7 +210,7 @@
                     </div>                    
                     <div class="accordion__item">
                         <div class="accordion__header">
-                        Standart
+                        Standard
                         </div>
                         <div class="accordion__body">
                         <div class="accordion__content">
@@ -237,14 +238,16 @@
                     new ItcAccordion(document.querySelector('.accordion'), {
                       alwaysOpen: false
                     });
-                  </script>                   
-                <button>Contact us</button>
-                <img src="./assets/img/leafs-small.png" alt="leafs">
+                  </script>
+                <div class="prices-subcontainer">                     
+                    <button>Contact us</button><br>
+                    <img src="./assets/img/leafs-small.png" alt="leafs">
+                </div>
             </div>
         </section>
         <section id="contacts">
             <div class="contacts-container">
-                <img src="./assets/img/contact_woman1.png" width="400px" alt="Woman">
+                <img src="./assets/img/contact_woman1.png" width="400px" height="496.99px" alt="Woman">
                 <h2>Contact us</h2>
                 <div class="form-select">
                     <form class="form">    
@@ -258,17 +261,20 @@
                     </form>
                 </div>
             </div>
-        </section>
+        </section>   
+    </div> 
     </main>
     <footer class="footer">
         <div class="footer-container">
-            <p>© 2022 <a href="https://github.com/IrinaOsp">github</a></p>
+            <p>© &nbsp&nbsp&nbsp2022&nbsp&nbsp <a href="https://github.com/IrinaOsp">github</a></p>
             <p><a href="https://rs.school/js-stage0/ ">Rolling Scopes School</a></p>
-            <div>
-            <a href=""><img src="./assets/img/inst1.svg" alt="instagram icon" class="sn-icons"></a>
-            <a href=""><img src="./assets/img/fb1.svg" alt="fb icon" class="sn-icons"></a>
-            <a href=""><img src="./assets/img/tw1.svg" alt="tw icon" class="sn-icons"></a>
-            <a href=""><img src="./assets/img/pinterest1.svg" alt="pinterst icon" class="sn-icons"></a>
+            <div class="footer-networks">
+                <ul class="footer-networks-list">
+                    <li><a href=""><img src="./assets/img/inst1.svg" alt="instagram icon" class="sn-icons"></a></li>
+                    <li><a href=""><img src="./assets/img/fb1.svg" alt="fb icon" class="sn-icons"></a></li>
+                    <li><a href=""><img src="./assets/img/tw1.svg" alt="tw icon" class="sn-icons"></a></li>
+                    <li><a href=""><img src="./assets/img/pinterest1.svg" alt="pinterst icon" class="sn-icons"></a></li>
+                </ul>            
             </div>
         </div>
     </footer>

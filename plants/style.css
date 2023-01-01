@@ -39,11 +39,6 @@
 
   html, body {
     margin: 0 auto;
-}
-
- body {
-    position: absolute;
-    padding: 0px 0px;
     max-width: 1440px;
 }
 
@@ -59,7 +54,6 @@
     text-decoration: none;
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
-    
   }
 
   button:hover {
@@ -90,6 +84,7 @@
     display: flex;
     justify-content: space-between;
     margin: 0px auto;
+    max-width: 1440px;
     padding: 42px 109px 42px 111px;
     min-height: 50px;
   }
@@ -124,6 +119,11 @@
 
   .nav-link:hover {
     color: var(--orange-color);   
+  }
+
+  .main-container {
+    margin: 0 auto;
+    max-width: 1440px;
   }
 
   h1 {
@@ -217,6 +217,7 @@
     display: flex;
     justify-content: space-between;
     margin-right: 324px;
+    margin-top: 10px;
     min-width: 559px;
   }
 
@@ -235,12 +236,13 @@
 
   .services-content-img {
     width: 329px;
+    display: block;
   }
 
   .services-container h3 {
     font: normal 700 20px/20px Inter;
     color: var(--orange-color);
-    padding-top: 4px;
+    padding-top: 9px;
   }
 
   .services-container p {
@@ -259,16 +261,9 @@
 
   #prices {
     background-color: #fff;
-    height: 560px;
-  }
-
-  #prices h2 {
-    font: normal 700 40px/48px Inter;
-    background-color: #fff;
   }
 
   .prices-container {
-    position: relative;
     padding: 40px 109px 115px 109px;
     display: flex;
     align-content: space-between;
@@ -277,11 +272,18 @@
     background-color: #fff;
   }
 
+
+  .prices-container h2 {
+    font: normal 700 40px/48px Inter;
+    background-color: #fff;
+    flex-basis: 50%;
+  }
+
   .prices-container > p {
     font: normal 700 40px/50px Inter;
     text-align: right;
-    margin-left: 635px;
     background-color: #fff;
+    flex-basis: 50%;
   }
 
   .span-gardeners {
@@ -289,18 +291,20 @@
     background-color: #fff;
   }
 
-  .prices-container > button {    
-    position: absolute;
-    top: 181px;
-    right: 109px;
+  .prices-subcontainer {
     background-color: #fff;
   }
 
-  .prices-container > img {    
-    position: absolute;
-    top: 270px;
-    right: 109px;
+  .prices-subcontainer > button {    
     background-color: #fff;
+    margin-top: 38px;
+  }
+
+  .prices-subcontainer > img {    
+    background-color: #fff;
+    margin-top: 39px;
+    width: 152px;
+    height: 175px;
   }
 
   .prices-buttons {
@@ -426,23 +430,27 @@
     display: none;
   }
 
-
   .contacts-container {
     margin: 53px 109px 0px 109px;
     display: flex;
+    justify-content: space-between;
   }
+
   .contacts-container h2 {
     font: normal 700 40px/50px Inika;
     color: var(--green-color);
-    margin-top: 10px;
-    margin-left: 113px;
-    width: ;
+    margin-top: 7px;
+    padding-left: 50px;
+    flex-basis: 20%;
+  }
+
+  .contacts-container img {
+    flex-basis: 33%;
   }
 
   .form-select {
     margin-top: 95px;
-    margin-left: 64px;
-    
+    flex-basis: 37%;
   }
 
   .select-city {
@@ -506,8 +514,10 @@
   .footer-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     background-color: #fff;
+    margin: 0 auto;
+    max-width: 1440px;
   }
 
   footer * {
@@ -515,6 +525,17 @@
     font: normal 400 20px/50px Inter;
     color: #000;
     text-decoration: none;
+  }
+
+  .footer-networks {
+    flex-basis: 15%;
+  }
+
+  .footer-networks-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    list-style: none;
   }
 
   .sn-icons {
