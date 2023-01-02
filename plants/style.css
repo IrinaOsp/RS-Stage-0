@@ -54,6 +54,7 @@
     text-decoration: none;
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
+    cursor: pointer;
   }
 
   button:hover {
@@ -300,6 +301,10 @@
     margin-top: 38px;
   }
 
+  .prices-subcontainer > button:hover {    
+    background-color: var(--orange-color);
+  }
+
   .prices-subcontainer > img {    
     background-color: #fff;
     margin-top: 39px;
@@ -471,6 +476,7 @@
     calc(100% - 10px) calc(1em + 2px),
     calc(100% - .1em) .1em;
     background-repeat: no-repeat;
+    cursor: pointer;
   }
 
     .select-city:focus {
