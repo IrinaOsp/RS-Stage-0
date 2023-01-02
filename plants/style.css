@@ -1,0 +1,550 @@
+:root {
+    --green-color: #499A18;
+    --orange-color: #E06733;
+    --light-grey-color: #717171;
+    --gark-grey-color: #636060;
+    --beige-color: #EDF2EC;
+    --black-color: #010201;
+    
+  }
+
+  @font-face {
+    font-family: Inika; /*nav font*/
+    src: url("assets/fonts/Inika/Inika-Regular.ttf");
+    font-weight: 400; 
+  }
+  @font-face {
+    font-family: Inika; /*nav font*/
+    src: url("assets/fonts/Inika/Inika-Bold.ttf");
+    font-weight: 700; 
+  }
+  @font-face {
+    font-family: Inter;
+    src: url("assets/fonts/Inter/static/Inter-Regular.ttf");
+    font-weight: 400; 
+  }
+  @font-face {
+    font-family: Inter;
+    src: url("assets/fonts/Inter/static/Inter-Bold.ttf");
+    font-weight: 700; 
+  }
+
+  * {
+    background-color: var(--beige-color);
+    Box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+
+  html, body {
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+  button {
+    border-radius: 10px;
+    width: 161px;
+    height: 50px;
+    border: 1px solid var(--orange-color);
+    font: normal 400 20px/26px Inika;
+    color: var(--orange-color);
+    padding: 11.6px 24.6px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: var(--orange-color);
+    color: #fff;
+    }
+
+.button-learn {
+        border-radius: 10px;
+        min-width: 158px;
+        height: 44px;
+        border: 2px solid var(--orange-color);
+        font: normal 400 16px/20px Inter;
+        color: #000000;
+        padding: 11.6px 24.6px;
+        text-align: center;
+        text-decoration: none;
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;
+    }
+
+.button-learn:hover {
+        background-color: var(--orange-color);
+        color: #fff;
+    }
+
+   .header-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px auto;
+    max-width: 1440px;
+    padding: 42px 109px 42px 111px;
+    min-height: 50px;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 498px;
+    align-items: center;    
+  }
+
+  .nav-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+  }
+
+  .nav-item {
+    margin-left: 46px;
+  }
+
+  .nav-link {
+    font: normal 400 16px/50px Inika;
+    color: var(--black-color);
+    text-decoration: none;    
+  }
+
+  .nav-link:hover {
+    color: var(--orange-color);   
+  }
+
+  .main-container {
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+
+  h1 {
+    font: normal 700 45px/50px Inter;
+    color: var(--light-grey-color);
+    padding-bottom: 42px;
+  }
+
+  h1 span {
+    color: var(--green-color);
+  }
+
+  .welcome-container {
+    display: flex;
+  }
+
+  .welcome-img {
+    margin-top: 62px;
+    margin-left: 109px;
+  }
+
+  .welcome-subcontainer {
+    margin: 98px 109px 94px 224px;
+  }
+
+  .welcome-subcontainer p {
+    font: normal 400 20px/35px Inter;
+    color: var(--gark-grey-color);
+    padding-bottom: 47px;            /*уточнить*/
+  }
+
+  .about-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #fff;
+  }
+
+  .about-container * {
+    background-color: #fff;
+  }
+
+  .about-container h2 {
+    font: normal 400 40px/52px Inika;
+    margin-top: 0;
+    margin-bottom: 40px;
+    color: var(--green-color);    
+  }
+
+  .about-container span {
+    color: var(--orange-color);
+  }
+
+  .about-subcontainer {
+    margin-top: 161px;
+    margin-left: 109px;
+    max-width: 605px;
+  }
+
+  .about-subcontainer p {
+    font: normal 400 20px/30px Inter;
+  }
+
+  .about-subcontainer-img {
+    margin-top: 93px;
+    margin-right: 109px;
+    margin-bottom: 94px;
+  }
+
+  #service {
+    margin-top: 40px;
+    margin-bottom: 73px;
+  }
+
+  .services-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 109px;
+    margin-top: 40px;
+    margin-bottom: 90px;
+    height: 94px;
+  }
+
+  .services-content h2{
+    font: normal 400 40px/52px Inika;
+    color: var(--green-color);
+  }
+
+  .services-content-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 324px;
+    margin-top: 10px;
+    min-width: 559px;
+  }
+
+  .services-container {
+    margin-left: 109px;
+    margin-right: 109px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: space-between;
+  }
+
+  .services-container > div {
+    margin-bottom: 55px;    
+  }
+
+  .services-content-img {
+    width: 329px;
+    display: block;
+  }
+
+  .services-container h3 {
+    font: normal 700 20px/20px Inter;
+    color: var(--orange-color);
+    padding-top: 9px;
+  }
+
+  .services-container p {
+    font: normal 400 16px/20px Inter;
+    color: var(--light-grey-color);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 10px;
+    margin-bottom: 36px;
+  }
+
+  .services-content-border {
+    border: 1px solid #E3E1D5;
+    border-radius: 0px 0px 20px 20px;
+    text-align: center;
+  }
+
+  #prices {
+    background-color: #fff;
+  }
+
+  .prices-container {
+    padding: 40px 109px 115px 109px;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #fff;
+  }
+
+
+  .prices-container h2 {
+    font: normal 700 40px/48px Inter;
+    background-color: #fff;
+    flex-basis: 50%;
+  }
+
+  .prices-container > p {
+    font: normal 700 40px/50px Inter;
+    text-align: right;
+    background-color: #fff;
+    flex-basis: 50%;
+  }
+
+  .span-gardeners {
+    color: #499A18;
+    background-color: #fff;
+  }
+
+  .prices-subcontainer {
+    background-color: #fff;
+  }
+
+  .prices-subcontainer > button {    
+    background-color: #fff;
+    margin-top: 38px;
+  }
+
+  .prices-subcontainer > button:hover {    
+    background-color: var(--orange-color);
+  }
+
+  .prices-subcontainer > img {    
+    background-color: #fff;
+    margin-top: 39px;
+    width: 152px;
+    height: 175px;
+  }
+
+  .prices-buttons {
+    border: 1px solid #E3E1D5;
+    border-radius: 20px;
+    padding: 34px 41px;
+    width: 338px;
+  }
+
+  .accordion {
+    border: 1px solid #E3E1D5;
+    border-radius: 20px;
+    padding: 34px 41px;
+    background-color: #fff;
+    width: 332px;
+    height: 282.01px;
+    margin-top: 9px;
+  }
+
+  .accordion__item {
+    margin-bottom: 32px;  /*дает расстояние между кнопками*/
+    background-color: #fff;
+  }
+
+  .accordion__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: 250px;
+    padding-left: 40px;  
+    /*padding-top: 16px;*/
+    color: #000;
+    font: normal 700 20px/20px Inter;
+    background-color: #EDF2EC;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.1s linear;
+  }
+
+  .accordion__header::after {   /*полож треугольника*/
+    flex-shrink: 0;
+    width: 60px; /*расстояние от левого края*/
+    height: 18px;
+    margin-left: auto;
+    background-image: url(./assets/img/accordion_btn.svg);
+    background-repeat: no-repeat;
+    background-size: 1rem;
+    content: "";
+    transition: transform 0.1s linear;
+  }
+
+  .accordion__item_show .accordion__header::after,
+  .accordion__item_slidedown .accordion__header::after {   /*разворот треуг на 180*/
+    background-image: url(./assets/img/accordion_btn_open.svg);
+    /*transform: rotate(-180deg);*/
+  }
+    
+    .accordion__item_show .accordion__header { /*красит в зеленый открытый хэдер*/
+    background-color: #D6E7D2;
+      border-bottom: 0.5px solid #AEA1A1; /*палочка*/
+    }
+
+  .accordion__header:hover {  /*цвет кнопки при наведении*/
+    background-color: #D6E7D2;
+  }
+
+  .accordion__item:not(.accordion__item_show) .accordion__header { /*радиус низа кнопки до открытия*/
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+
+  .accordion__content {  /*формат открытого контента*/
+    padding: 6px 41px 12px 40px;
+    height: 104px;
+    width: 250px;
+    background: #D6E7D2;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    font: normal 300 10px/10px Inter;
+  }
+
+  .accordion__content_text {
+    font: normal 300 10px/10px Inter;
+    color: var(--light-grey-color);
+    background-color: #D6E7D2;
+    padding-top: 2px;
+    padding-bottom: 0;
+  }
+
+  .accordion__content_span {
+    font: normal 700 16px/20px Inter;
+    color: var(--orange-color);
+    background-color: #D6E7D2;
+  }
+
+  .accordion__content_price {
+    font: normal 700 16px/20px Inter;
+    color: #000;
+    background-color: #D6E7D2;
+    padding-top: 4px;
+    padding-bottom: 0;
+  }
+
+  .accordion__content_button {
+    font: normal 700 14px/20px Inter;
+    color: var(--light-grey-color);
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 86px;
+    max-height: 25px;
+    margin-top: 10px;    
+  }
+
+
+         
+    /*скрывает контент*/
+  .accordion__item:not(.accordion__item_show) .accordion__body {
+    display: none;
+  }
+
+  .contacts-container {
+    margin: 53px 109px 0px 109px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contacts-container h2 {
+    font: normal 700 40px/50px Inika;
+    color: var(--green-color);
+    margin-top: 7px;
+    padding-left: 50px;
+    flex-basis: 20%;
+  }
+
+  .contacts-container img {
+    flex-basis: 33%;
+  }
+
+  .form-select {
+    margin-top: 95px;
+    flex-basis: 37%;
+  }
+
+  .select-city {
+    appearance: none; /*убирает стандартное форматирование*/
+    outline: none;
+    background-color: #D6E7D2;
+    border: none;    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font: normal 400 20px/40px Inter;
+    letter-spacing: 0.05em;
+    color: var(--light-grey-color);
+    height: 50px;
+    width: 450px;
+    padding-left: 20px;
+    background-image: url('./assets/img/accordion_btn_contact_unact.svg');
+    background-position: 
+    calc(100% - 31px) calc(1em - 2px),
+    calc(100% - 10px) calc(1em + 2px),
+    calc(100% - .1em) .1em;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+    .select-city:focus {
+    background-image: url('./assets/img/accordion_btn_contact_act.svg');
+    background-position: 
+    calc(100% - 31px) calc(1em - 2px),
+    calc(100% - 10px) calc(1em + 2px),
+    calc(100% - .1em) .1em;
+    background-repeat: no-repeat;
+  }
+
+  .select-city:active {
+    background: #C1E698;
+  }
+
+  .select-city:hover {
+    background-color: #C1E698;
+  }
+
+
+  .select-option { /*строки*/
+    font: normal 400 16px/40px Inter;
+    color: var(--green-color);
+    height: 35px;
+    width: 380px;
+    padding: 35px;
+    background-color: #DCE9D9;
+    border: none;
+  }
+
+  .select-option:hover {
+    background-color: #C1E698;
+  }
+
+
+
+  .footer {
+    background-color: #fff;
+    padding: 40px 109px;
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: #fff;
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+
+  footer * {
+    background-color: #fff;
+    font: normal 400 20px/50px Inter;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .footer-networks {
+    flex-basis: 15%;
+  }
+
+  .footer-networks-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    list-style: none;
+  }
+
+  .sn-icons {
+    width: 32px;
+    height: 32px;
+  }

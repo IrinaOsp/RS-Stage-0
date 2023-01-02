@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./assets/img/logo_vector.svg" type="image/svg" sizes="32x32">
+    <title>Plant store</title>
+<!--УБРАТЬ В JS-->
+    <script>
+     class ItcAccordion {
+      constructor(target, config) {
+        this._el = typeof target === 'string' ? document.querySelector(target) : target;
+        const defaultConfig = {
+          alwaysOpen: true,
+          duration: 350
+        };
+        this._config = Object.assign(defaultConfig, config);
+        this.addEventListener();
+      }
+      addEventListener() {
+        this._el.addEventListener('click', (e) => {
+          const elHeader = e.target.closest('.accordion__header');
+          if (!elHeader) {
+            return;
+          }
+          if (!this._config.alwaysOpen) {
+            const elOpenItem = this._el.querySelector('.accordion__item_show');
+            if (elOpenItem) {
+              elOpenItem !== elHeader.parentElement ? this.toggle(elOpenItem) : null;
+            }
+          }
+          this.toggle(elHeader.parentElement);
+        });
+      }
+      show(el) {
+        const elBody = el.querySelector('.accordion__body');
+        if (elBody.classList.contains('collapsing') || el.classList.contains('accordion__item_show')) {
+          return;
+        }
+        elBody.style['display'] = 'block';
+        const height = elBody.offsetHeight;
+        elBody.style['height'] = 0;
+        elBody.style['overflow'] = 'hidden';
+        elBody.style['transition'] = `height ${this._config.duration}ms ease`;
+        elBody.classList.add('collapsing');
+        el.classList.add('accordion__item_slidedown');
+        elBody.offsetHeight;
+        elBody.style['height'] = `${height}px`;
+        window.setTimeout(() => {
+          elBody.classList.remove('collapsing');
+          el.classList.remove('accordion__item_slidedown');
+          elBody.classList.add('collapse');
+          el.classList.add('accordion__item_show');
+          elBody.style['display'] = '';
+          elBody.style['height'] = '';
+          elBody.style['transition'] = '';
+          elBody.style['overflow'] = '';
+        }, this._config.duration);
+      }
+      hide(el) {
+        const elBody = el.querySelector('.accordion__body');
+        if (elBody.classList.contains('collapsing') || !el.classList.contains('accordion__item_show')) {
+          return;
+        }
+        elBody.style['height'] = `${elBody.offsetHeight}px`;
+        elBody.offsetHeight;
+        elBody.style['display'] = 'block';
+        elBody.style['height'] = 0;
+        elBody.style['overflow'] = 'hidden';
+        elBody.style['transition'] = `height ${this._config.duration}ms ease`;
+        elBody.classList.remove('collapse');
+        el.classList.remove('accordion__item_show');
+        elBody.classList.add('collapsing');
+        window.setTimeout(() => {
+          elBody.classList.remove('collapsing');
+          elBody.classList.add('collapse');
+          elBody.style['display'] = '';
+          elBody.style['height'] = '';
+          elBody.style['transition'] = '';
+          elBody.style['overflow'] = '';
+        }, this._config.duration);
+      }
+      toggle(el) {
+        el.classList.contains('accordion__item_show') ? this.hide(el) : this.show(el);
+      }
+    }
+    </script>
+
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+            <img src="./assets/img/logo_vector.svg" width="20" height="20" alt="logo plant" 
+            class="img-logo">
+            <p>Plants</p>
+            </div>
+            <div class="nav-container">        
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#welcome" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">About us</a></li>
+                        <li class="nav-item"><a href="#service" class="nav-link">Service</a></li>
+                        <li class="nav-item"><a href="#prices" class="nav-link">Price</a></li>
+                        <li class="nav-item"><a href="#contacts" class="nav-link">Contacts</a></li>
+                    </ul>
+                </nav>
+            </div>
+         </div>
+    </header>
+    <main>        
+        <div class="main-container">
+        <section id="welcome">
+            <div class="welcome-container">
+                <div>
+                    <img src="./assets/img/leafs.png" width="449px" height="407px" alt="leafs"
+                    class="welcome-img">
+                </div>
+                <div class="welcome-subcontainer">
+                    <h1>We grow <span>plants</span> and give you oxygen</h1>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    <button class="button-learn">LEARN MORE</button>
+                </div>
+            </div>
+        </section>
+        <section id="about">
+            <div class="about-container">
+                <div class="about-subcontainer">
+                    <h2>We are <span>professional <br>experienced</span> gardeners</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+                </div>
+                <div class="about-subcontainer-img">
+                    <img src="./assets/img/houseplant1.png" width="464px" height="479px" alt="houseplant">
+                </div>
+            </div>
+        </section>
+        <section id="service">
+            <div class="services-content">
+                <h2>Service and our<br> projects</h2>
+                <div class="services-content-buttons">
+                    <button>Gardens</button>
+                    <button>Lawn</button>
+                    <button>Planting</button>
+                </div>
+            </div>
+            <div class="services-container">
+                <div>
+                    <img src="./assets/img/Garden_care.png" alt="Garden care" class="services-content-img">
+                    <div class="services-content-border">
+                        <h3>Garden care</h3>
+                        <p>Lorem Ipsum has been the industry</p>
+                    </div>
+                </div>
+                <div>
+                    <img src="./assets/img/Planting.png" alt="Garden care" class="services-content-img">
+                    <div class="services-content-border">
+                        <h3>Planting</h3>
+                        <p>Lorem Ipsum has been the industry</p>
+                    </div>
+                </div>
+                <div>
+                    <img src="./assets/img/Lawn_care.png" alt="Garden care" class="services-content-img">
+                    <div class="services-content-border">
+                        <h3>Lawn care</h3>
+                        <p>Lorem Ipsum has been the industry</p>
+                    </div>
+                </div>
+                <div>
+                    <img src="./assets/img/Planting2.png" alt="Garden care" class="services-content-img">
+                    <div class="services-content-border">
+                        <h3>Planting</h3>
+                        <p>Lorem Ipsum has been the industry</p>
+                    </div>
+                </div>
+                <div>
+                    <img src="./assets/img/Garden_care2.png" alt="Garden care" class="services-content-img">
+                    <div class="services-content-border">
+                        <h3>Garden care</h3>
+                        <p>Lorem Ipsum has been the industry</p>
+                    </div>
+                </div>
+                <div>
+                    <img src="./assets/img/Planting3.png" alt="Garden care" class="services-content-img">
+                    <div class="services-content-border">
+                        <h3>Planting</h3>
+                        <p>Lorem Ipsum has been the industry</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section id="prices">
+            <div class="prices-container">
+                <h2>Prices</h2>
+                <p>Our best <span class="span-gardeners">gardeners</span> are<br>ready to help you</p>
+                <div id="accordion" class="accordion">
+                    <div class="accordion__item">
+                        <div class="accordion__header">
+                            Basics
+                        </div>
+                        <div class="accordion__body">
+                            <div class="accordion__content">
+                                <p class="accordion__content_text">Release of Letraset sheets containing Lorem Ipsum passages, and more recently</p>
+                                <p class="accordion__content_price"><span class="accordion__content_span">$15</span> / per hour</p>
+                                <button class="accordion__content_button">Order</button>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="accordion__item">
+                        <div class="accordion__header">
+                        Standard
+                        </div>
+                        <div class="accordion__body">
+                        <div class="accordion__content">
+                            <p class="accordion__content_text">Release of Letraset sheets containing Lorem Ipsum passages, and more recently</p>
+                            <p class="accordion__content_price"><span class="accordion__content_span">$25</span> / per hour</p>
+                            <button class="accordion__content_button">Order</button>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="accordion__item">
+                        <div class="accordion__header">
+                        Pro care
+                        </div>
+                        <div class="accordion__body">
+                        <div class="accordion__content">
+                            <p class="accordion__content_text">Release of Letraset sheets containing Lorem Ipsum passages, and more recently</p>
+                            <p class="accordion__content_price"><span class="accordion__content_span">$35</span> / per hour</p>
+                            <button class="accordion__content_button">Order</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+         
+                <script>
+                    new ItcAccordion(document.querySelector('.accordion'), {
+                      alwaysOpen: false
+                    });
+                  </script>
+                <div class="prices-subcontainer">                     
+                    <button>Contact us</button><br>
+                    <img src="./assets/img/leafs-small.png" alt="leafs">
+                </div>
+            </div>
+        </section>
+        <section id="contacts">
+            <div class="contacts-container">
+                <img src="./assets/img/contact_woman1.png" width="400px" height="496.99px" alt="Woman">
+                <h2>Contact us</h2>
+                <div class="form-select">
+                    <form class="form">    
+                        <select name="City" class="select-city">
+                            <option value="" class="select-option">City</option>                        
+                            <option value="Canandaigua" class="select-option">Canandaigua, NY</option>
+                            <option value="NY" class="select-option">New York City</option>
+                            <option value="Yonkers" class="select-option">Yonkers, NY</option>
+                            <option value="Sherrill" class="select-option">Sherrill, NY</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </section>   
+    </div> 
+    </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <p>© &nbsp&nbsp&nbsp2022&nbsp&nbsp <a href="https://github.com/IrinaOsp" target="_blank">github</a></p>
+            <p><a href="https://rs.school/js-stage0/ " target="_blank">Rolling Scopes School</a></p>
+            <div class="footer-networks">
+                <ul class="footer-networks-list">
+                    <li><a href=""><img src="./assets/img/inst1.svg" alt="instagram icon" class="sn-icons"></a></li>
+                    <li><a href=""><img src="./assets/img/fb1.svg" alt="fb icon" class="sn-icons"></a></li>
+                    <li><a href=""><img src="./assets/img/tw1.svg" alt="tw icon" class="sn-icons"></a></li>
+                    <li><a href=""><img src="./assets/img/pinterest1.svg" alt="pinterst icon" class="sn-icons"></a></li>
+                </ul>            
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
