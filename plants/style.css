@@ -43,7 +43,7 @@
 }
 
   button {
-    border-radius: 10px;
+    border-radius: 5px;
     width: 161px;
     height: 50px;
     border: 1px solid var(--orange-color);
@@ -93,6 +93,8 @@
   .logo-container {
     display: flex;
     align-items: center;
+    font: normal 400 16px/21px Inika;
+    margin-bottom: 1px;
   }
 
   .nav-container {
@@ -142,18 +144,19 @@
   }
 
   .welcome-img {
-    margin-top: 62px;
-    margin-left: 109px;
+    margin-top: 50px;
+    margin-left: 100px;
   }
 
   .welcome-subcontainer {
-    margin: 98px 109px 94px 224px;
+    margin: 98px 109px 94px 220px;
   }
 
   .welcome-subcontainer p {
     font: normal 400 20px/35px Inter;
     color: var(--gark-grey-color);
-    padding-bottom: 47px;            /*уточнить*/
+    padding-bottom: 47px;
+    padding-top: 2px;
   }
 
   .about-container {
@@ -196,7 +199,7 @@
 
   #service {
     margin-top: 40px;
-    margin-bottom: 73px;
+    margin-bottom: 63px;
   }
 
   .services-content {
@@ -205,7 +208,7 @@
     align-items: center;
     margin-left: 109px;
     margin-top: 40px;
-    margin-bottom: 90px;
+    margin-bottom: 87px;
     height: 94px;
   }
 
@@ -218,7 +221,7 @@
     display: flex;
     justify-content: space-between;
     margin-right: 324px;
-    margin-top: 10px;
+    margin-top: 5px;
     min-width: 559px;
   }
 
@@ -232,11 +235,10 @@
   }
 
   .services-container > div {
-    margin-bottom: 55px;    
+    margin-bottom: 53px;    
   }
 
   .services-content-img {
-    width: 329px;
     display: block;
   }
 
@@ -249,8 +251,7 @@
   .services-container p {
     font: normal 400 16px/20px Inter;
     color: var(--light-grey-color);
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 10px;
+    margin-top: 15px;
     margin-bottom: 36px;
   }
 
@@ -265,7 +266,7 @@
   }
 
   .prices-container {
-    padding: 40px 109px 115px 109px;
+    padding: 40px 109px 103px 109px;
     display: flex;
     align-content: space-between;
     flex-wrap: wrap;
@@ -298,7 +299,7 @@
 
   .prices-subcontainer > button {    
     background-color: #fff;
-    margin-top: 38px;
+    margin-top: 42px;
   }
 
   .prices-subcontainer > button:hover {    
@@ -307,9 +308,9 @@
 
   .prices-subcontainer > img {    
     background-color: #fff;
-    margin-top: 39px;
-    width: 152px;
-    height: 175px;
+    margin-top: 35px;
+    margin-left: -5px;
+
   }
 
   .prices-buttons {
@@ -435,8 +436,13 @@
     display: none;
   }
 
+  #contacts {
+    height: 550px;
+  }
+
   .contacts-container {
-    margin: 53px 109px 0px 109px;
+    margin: 0px 109px;
+    padding-top: 53px;
     display: flex;
     justify-content: space-between;
   }
@@ -444,13 +450,15 @@
   .contacts-container h2 {
     font: normal 700 40px/50px Inika;
     color: var(--green-color);
-    margin-top: 7px;
+    margin-top: 9px;
     padding-left: 50px;
     flex-basis: 20%;
   }
 
   .contacts-container img {
     flex-basis: 33%;
+    height: 497px;
+    width: 400px;
   }
 
   .form-select {
@@ -520,7 +528,7 @@
   .footer-container {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     background-color: #fff;
     margin: 0 auto;
     max-width: 1440px;
@@ -533,14 +541,27 @@
     text-decoration: none;
   }
 
+  .footer-github{
+    display: flex;
+    justify-content: space-between;
+    width: 169px;
+    padding-bottom: 10px;
+  }
+
+  .footer-RSschool{
+    padding-left: 20px;
+    padding-bottom: 10px;
+  }
+
   .footer-networks {
-    flex-basis: 15%;
+    flex-basis: 15.4%;
+    padding-top: 7px;
   }
 
   .footer-networks-list {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     list-style: none;
   }
 
