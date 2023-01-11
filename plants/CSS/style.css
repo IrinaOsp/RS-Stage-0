@@ -29,15 +29,20 @@
     font-weight: 700; 
   }
 
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
   * {
     background-color: var(--beige-color);
-    Box-sizing: border-box; 
-    margin: 0;
-    padding: 0;
     scroll-behavior: smooth;
   }
 
-  html, body {
+html, body {
     margin: 0 auto;
     max-width: 1440px;
 }
