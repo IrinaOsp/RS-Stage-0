@@ -255,6 +255,13 @@ html, body {
     font: normal 400 20px/30px Inter;
   }
 
+  .about-subcontainer-img {
+    min-width: 464px; 
+    min-height: 479px;
+    background: url("../assets/img/houseplant1.png") 100% 100% no-repeat;
+    background-size: contain;
+  }
+
   #service {
     padding: 40px 109px 66px;
   }
@@ -634,16 +641,104 @@ html, body {
   }
 
   /*media start*/
+
+@media screen and (max-width: 1287px) {
+  .about-subcontainer-img {
+    min-width: 250px; 
+    min-height: 258px;
+  }
+
+  .welcome-container {
+    padding: 40px 50px 70px;
+  }
+
+}
+
 @media screen and (max-width: 1260px) {
+  .header {
+    padding-bottom: 0;
+  }
+
     .header-wrapper {
         padding: 35px 50px;
     }
 
     .header-container {
+        padding-top: 0;
+    }
+
+    .welcome-container-img {
+      order: 2;
+    }
+
+    .about-container {
+      padding: 40px 50px 95px;
+    }
+
+
+  }
+
+  @media screen and (max-width: 955px) {
+    .welcome-subcontainer {
       padding-top: 0;
-    
-}
+    }
+
+    .welcome-container-img {
+      width: 280px;
+      height: 254.15px;
+    }
+
+    .about-container h2 {
+      padding: 0px 122px;
+      text-align: center;
+      font-size: 35px;
+      line-height: 46px;
+      padding-bottom: 11px;
+    }
+
+    .about-subcontainer {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 68px;
+      max-width: 668px;
+    }
+
+    .about-subcontainer-img {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+
+  }
+
+
   /*media end*/
+
+  /*media 768 start*/
+  @media screen and (max-width: 770px) {
+    h1 {
+      font-size: 35px;
+      padding-bottom: 30px;
+    }
+
+    .welcome-subcontainer {
+      max-width: 346px;
+    }
+
+    .welcome-subcontainer p {
+      font-size: 16px;
+      line-height: 25px;
+      padding-bottom: 32px;
+      padding-left: 5px;
+    }
+    
+
+
+
+
+  }
+  /*media 768 end*/
 
 
   /*media 380 start*/
