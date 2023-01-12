@@ -652,6 +652,14 @@ html, body {
     padding: 40px 50px 70px;
   }
 
+  .services-content h2 {
+    padding-bottom: 40px;
+  }
+
+  .services-container {
+    justify-content: space-around;
+  }
+
 }
 
 @media screen and (max-width: 1260px) {
@@ -706,6 +714,32 @@ html, body {
     .about-subcontainer-img {
       margin-left: auto;
       margin-right: auto;
+    }
+
+    #service {
+      padding: 60px 50px 32px;
+    }
+
+    .services-content {
+      padding-bottom: 40px;
+    }
+
+    .services-content h2 {
+      font-size: 35px;
+      line-height: 46px;
+    }
+
+    .services-content-buttons {
+      padding-top: 0;
+    }
+
+    .services-container {
+      justify-content: space-between;
+    }
+
+    .services-container > div {
+      margin-bottom: 38px;
+
     }
 
 
