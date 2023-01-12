@@ -204,6 +204,7 @@ html, body {
 
   .welcome-container-img {
     max-width: 448.8px;
+    min-width: 280px;
     height: 407.36px;
   }
 
@@ -225,6 +226,7 @@ html, body {
 
   .about-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     background-color: #fff;
     padding: 93px 109px 94px;
@@ -259,6 +261,7 @@ html, body {
 
   .services-content {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding-right: 215px;
@@ -272,6 +275,7 @@ html, body {
 
   .services-content-buttons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     min-width: 559px;
     padding-top: 5px;
@@ -629,8 +633,17 @@ html, body {
     height: 32px;
   }
 
-  /*media 768 start*/
-  /*media 768 end*/
+  /*media start*/
+@media screen and (max-width: 1260px) {
+    .header-wrapper {
+        padding: 35px 50px;
+    }
+
+    .header-container {
+      padding-top: 0;
+    
+}
+  /*media end*/
 
 
   /*media 380 start*/
@@ -648,6 +661,11 @@ html, body {
         z-index: 10;
         padding: 50px;
         transform: translateX(100%);
+        transition: .2s all linear;
+    }
+
+    .nav-active {
+        transform: translateX(0);
     }
 
     .nav-list {
