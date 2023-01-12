@@ -334,18 +334,22 @@ html, body {
     background-color: #fff;
   }
 
-
-  .prices-container h2 {
-    font: normal 700 40px/48px Inter;
+  .prices-subcontainer-left {
     background-color: #fff;
-    flex-basis: 50%;
   }
 
-  .prices-container > p {
+  .prices-subcontainer-left h2 {
+    font: normal 700 40px/48px Inter;
+    background-color: #fff;
+    padding-bottom: 60px;
+  }
+
+  .prices-subcontainer-right > p {
     font: normal 700 40px/50px Inter;
     text-align: right;
     background-color: #fff;
     flex-basis: 50%;
+    padding-bottom: 38px;
   }
 
   .span-gardeners {
@@ -353,31 +357,30 @@ html, body {
     background-color: #fff;
   }
 
-  .prices-subcontainer {
+  .prices-subcontainer-right{
     background-color: #fff;
   }
 
-  .prices-subcontainer > button {    
+  .prices-subcontainer-right *{
     background-color: #fff;
+  }
+
+  .prices-subcontainer-right > button {    
     margin-top: 42px;
   }
 
-  .prices-subcontainer > button:hover {    
+  .prices-subcontainer-right > button:hover {    
     background-color: var(--orange-color);
   }
 
-  .prices-subcontainer > img {    
-    background-color: #fff;
-    margin-top: 35px;
-    margin-left: -5px;
-
+  .prices-subcontainer-right-img > img {    
+    margin-top: 39px;
   }
 
-  .prices-buttons {
-    border: 1px solid #E3E1D5;
-    border-radius: 20px;
-    padding: 34px 41px;
-    width: 338px;
+  .prices-subcontainer-right-img {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .accordion {
@@ -387,7 +390,6 @@ html, body {
     background-color: #fff;
     width: 332px;
     height: 282.01px;
-    margin-top: 9px;
   }
 
   .accordion__item {
@@ -417,7 +419,7 @@ html, body {
     width: 60px; /*расстояние от левого края*/
     height: 18px;
     margin-left: auto;
-    background-image: url(./assets/img/accordion_btn.svg);
+    background-image: url(../assets/img/accordion_btn.svg);
     background-repeat: no-repeat;
     background-size: 1rem;
     content: "";
@@ -426,7 +428,7 @@ html, body {
 
   .accordion__item_show .accordion__header::after,
   .accordion__item_slidedown .accordion__header::after {   /*разворот треуг на 180*/
-    background-image: url(./assets/img/accordion_btn_open.svg);
+    background-image: url(../assets/img/accordion_btn_open.svg);
     /*transform: rotate(-180deg);*/
   }
     
@@ -540,7 +542,7 @@ html, body {
     height: 50px;
     width: 450px;
     padding-left: 20px;
-    background-image: url('./assets/img/accordion_btn_contact_unact.svg');
+    background-image: url('../assets/img/accordion_btn_contact_unact.svg');
     background-position: 
     calc(100% - 31px) calc(1em - 2px),
     calc(100% - 10px) calc(1em + 2px),
@@ -550,7 +552,7 @@ html, body {
   }
 
     .select-city:focus {
-    background-image: url('./assets/img/accordion_btn_contact_act.svg');
+    background-image: url('../assets/img/accordion_btn_contact_act.svg');
     background-position: 
     calc(100% - 31px) calc(1em - 2px),
     calc(100% - 10px) calc(1em + 2px),
@@ -683,6 +685,19 @@ html, body {
       padding: 40px 50px 95px;
     }
 
+    .prices-container {
+      padding: 40px 50px 88px;
+    }
+
+    .prices-subcontainer-left h2 {
+      flex-basis: 100%;
+      padding-bottom: 50px;
+    }
+
+    .prices-subcontainer-right > p {
+      flex-basis: 30%;
+    }
+    
 
   }
 
@@ -739,9 +754,19 @@ html, body {
 
     .services-container > div {
       margin-bottom: 38px;
-
     }
 
+    .prices-subcontainer-left h2 {
+      font-size: 35px;
+      line-height: 42px;
+      padding-left: 15px;
+    }
+
+    .prices-subcontainer-right > p {
+      font-size: 25px;
+      line-height: 35px;
+      padding-bottom: 23px;
+    }
 
 
   }
@@ -750,7 +775,7 @@ html, body {
   /*media end*/
 
   /*media 768 start*/
-  @media screen and (max-width: 770px) {
+@media screen and (max-width: 770px) {
     h1 {
       font-size: 35px;
       padding-bottom: 30px;
@@ -766,7 +791,14 @@ html, body {
       padding-bottom: 32px;
       padding-left: 5px;
     }
+
+    .prices-subcontainer-right {
+      margin-top: 99px;
+    }
     
+    .prices-subcontainer-right-img > img {
+      margin-top: 34px;
+  }
 
 
 
