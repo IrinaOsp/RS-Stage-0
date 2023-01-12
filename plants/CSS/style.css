@@ -504,20 +504,12 @@ html, body {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap-reverse;
-    position: relative;
   }
 
   .contacts-container h2 {
     font: normal 700 40px/50px Inika;
     color: var(--green-color);
-    position: absolute;
-    top: 60px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
     text-align: center;
-    width: 195px;
   }
 
   .contacts-img img{
@@ -527,7 +519,6 @@ html, body {
 
   .form-select {
     margin-top: 95px;
-    flex-basis: 37%;
   }
 
   .select-city {
@@ -697,6 +688,29 @@ html, body {
     .prices-subcontainer-right > p {
       flex-basis: 30%;
     }
+
+    .contacts-container {
+      padding-top: 40px;
+      flex-direction: column;
+    }
+
+    .contacts-header {
+      order: -2;
+    }
+
+    .form-select {
+      margin-left: auto;
+      margin-right: auto;
+      order: -1;
+      padding-bottom: 250px;
+    }
+
+    .contacts-img {
+      width: 26vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     
 
   }
@@ -800,8 +814,42 @@ html, body {
       margin-top: 34px;
   }
 
+  .footer {
+    padding-top: 33px;
+    padding-bottom: 18px;
+  }
 
+  .footer-container {
+    flex-direction: column;
+  }
 
+  .footer-networks {
+    margin: 0 auto;
+  }
+
+  .footer * {
+    line-height: 24px;
+  }
+
+  .footer-RSschool {
+    padding: 16px 0px;
+  }
+
+  .footer-github {
+    padding-bottom: 0;
+  }
+
+  .footer-networks {
+    flex-basis: 100%;
+  }
+
+  .footer-networks-list > li {
+    padding-right: 20px;
+  }
+
+  .footer-networks-list > li:last-child {
+    padding-right: 0;
+  }
 
   }
   /*media 768 end*/
