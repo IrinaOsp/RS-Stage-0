@@ -365,19 +365,19 @@ html, body {
     background-color: #fff;
   }
 
-  .prices-subcontainer-right > button {    
-    margin-top: 42px;
-  }
-
-  .prices-subcontainer-right > button:hover {    
+  .prices-subcontainer-right-sub > button:hover {    
     background-color: var(--orange-color);
   }
 
-  .prices-subcontainer-right-img > img {    
-    margin-top: 39px;
+  .prices-subcontainer-right-sub-img {    
+    margin-top: 45px;
+    margin-bottom: 9px;
+    height: 175px;
+    width: 152px;
+    background: url("../assets/img/leafs-small.png") 100% 100% no-repeat;
   }
 
-  .prices-subcontainer-right-img {
+  .prices-subcontainer-right-sub {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -507,6 +507,8 @@ html, body {
   }
 
   .contacts-container h2 {
+    padding-top: 10px;
+    padding-left: 40px;
     font: normal 700 40px/50px Inika;
     color: var(--green-color);
     text-align: center;
@@ -516,23 +518,19 @@ html, body {
     width: 100%;
     height: auto;
   }
-
+  /*стилизация выпадающего списка*/
   .form-select {
     margin-top: 95px;
+    width: 450px;
   }
 
-  .select-city {
-    appearance: none; /*убирает стандартное форматирование*/
-    outline: none;
-    background-color: #D6E7D2;
-    border: none;    
+  .select-city-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 35px 5px 20px;
+    background-color: #D6E7D2;  
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font: normal 400 20px/40px Inter;
-    letter-spacing: 0.05em;
-    color: var(--light-grey-color);
-    height: 50px;
-    width: 450px;
-    padding-left: 20px;
     background-image: url('../assets/img/accordion_btn_contact_unact.svg');
     background-position: 
     calc(100% - 31px) calc(1em - 2px),
@@ -542,7 +540,24 @@ html, body {
     cursor: pointer;
   }
 
-    .select-city:focus {
+  .select-city-header > p {
+    font: normal 400 20px/40px Inter;
+    letter-spacing: 0.05em;
+    color: var(--light-grey-color);
+    background-color: inherit;
+  }
+
+  .select-city-header:hover {
+    background-color: #C1E698;
+    border: 1px solid #D6E7D2;
+    box-shadow: none;
+  }
+
+    .select-city-header:active {
+    padding-left: 35px;
+    background-color: #C1E698;
+    border: 1px solid #D6E7D2;
+    box-shadow: none;
     background-image: url('../assets/img/accordion_btn_contact_act.svg');
     background-position: 
     calc(100% - 31px) calc(1em - 2px),
@@ -551,29 +566,42 @@ html, body {
     background-repeat: no-repeat;
   }
 
-  .select-city:active {
-    background: #C1E698;
+  .select-city-body { /*скрытый выпадающий список*/
+    display: none;
+    padding-bottom: 31px;
+    padding-top: 15px;
+    background-color: #DCE9D9;
   }
-
-  .select-city:hover {
-    background-color: #C1E698;
-  }
-
 
   .select-option { /*строки*/
-    font: normal 400 16px/40px Inter;
-    color: var(--green-color);
-    height: 35px;
-    width: 380px;
-    padding: 35px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 12px;
     background-color: #DCE9D9;
-    border: none;
+    cursor: pointer;
   }
 
-  .select-option:hover {
+  .select-option > p { 
+    font: normal 400 16px/40px Inter;
+    letter-spacing: 0.05em;
+    height: min-content;
+    color: var(--green-color);
+    background-color: #DCE9D9;
+    border-bottom: 1px solid #D9D9D9;
+  }
+
+  .select-option > p:hover {
+    color: var(--light-grey-color);
+    border-bottom: 1px solid #717171;
+  }
+
+  .select-option:active {
     background-color: #C1E698;
   }
 
+  .select-option: {
+    background-color: #C1E698;
+  }
 
 
   .footer {
@@ -779,7 +807,7 @@ html, body {
     .prices-subcontainer-right > p {
       font-size: 25px;
       line-height: 35px;
-      padding-bottom: 23px;
+      padding-bottom: 27px;
     }
 
 
@@ -807,11 +835,13 @@ html, body {
     }
 
     .prices-subcontainer-right {
-      margin-top: 99px;
+      margin-top: 96px;
     }
     
-    .prices-subcontainer-right-img > img {
+    .prices-subcontainer-right-sub-img {
       margin-top: 34px;
+      height: 40%;
+      width: auto;
   }
 
   .footer {
