@@ -814,9 +814,7 @@ html, body {
   }
 
 
-  /*media end*/
-
-  /*media 768 start*/
+  /*media 770 start*/
 @media screen and (max-width: 770px) {
     h1 {
       font-size: 35px;
@@ -901,75 +899,322 @@ html, body {
   }
 
   }
-  /*media 768 end*/
+  /*media 770 end*/
+
+  /*media 715 start*/
+  @media screen and (max-width: 715px) {
+
+  .prices-container {
+    justify-content: center;
+    padding-top: 25px;
+    padding-bottom: 40px;
+  }
+
+  .prices-subcontainer-left h2 {
+    font-size: 25px;
+    line-height: 30px;
+    padding-left: 0;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+  .prices-subcontainer-right {
+    margin-top: 19px;
+  }
+
+  .prices-subcontainer-right > p {
+    text-align: center;
+  }
+
+  .prices-subcontainer-right-sub {
+    align-items: center;
+  }
+
+  .prices-subcontainer-right-sub-img {
+    display: none;
+  }
+  }
+  /*media 715 end*/
+
+  /*media 620 start*/
+  @media screen and (max-width: 620px) {
+    .header-wrapper {
+      padding: 36px 25px;
+    }
+
+    .nav-container {
+      width: auto;
+  }
+
+    .nav-item {
+      margin-left: 20px;
+    }
+
+    .welcome-container {
+      justify-content: center;
+    }
+
+    .welcome-subcontainer {
+      max-width: 100%;
+    }
+    
+    .welcome-container-img {
+      display: none;
+    }
+
+    .about-container h2 {
+      padding: 0;
+    }
+
+    .services-content {
+      padding-right: 25px;
+    }
+
+    .services-content-buttons {
+      min-width: 85vw;
+      justify-content: flex-start;
+  }
+
+  .services-content-buttons > button {
+    margin-right: 10px;
+    margin-top: 9px;
+  }
+
+  .contacts-container {
+    margin: 0px 42px;
+  }
+
+    .contacts-img {
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .footer {
+    padding-top: 22px;
+    padding-bottom: 15px;
+  }
+
+  }
+  /*media 620 end*/
+
+  /*media 497 start*/
+  @media screen and (max-width: 497px) {
+    .header-container {
+      align-items: flex-start;
+    }
+    .header-burger{
+      display: block;
+  }
+
+  .nav {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      padding: 50px;
+      transform: translateX(100%);
+      transition: .2s all linear;
+  }
+
+  .nav-active {
+      transform: translateX(0);
+  }
+
+  .nav-list {
+      display: block;
+  }
+  
+  .nav-item {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 40px;
+  }
+
+  .nav-item:last-child {
+      margin-bottom: 0;
+  }
+
+  .nav-link {
+      font-size: 50px;
+      line-height: 70px;
+  }
+
+  .nav-close {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 11;
+    }
+  
+  .nav-close-line {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: var(--light-grey-color);
+      position: absolute;
+      top: 50%;
+      
+    }
+  
+  .nav-close-line:first-child {
+      transform: translateY(50%) rotate(45deg);
+    }
+  
+  .nav-close-line:last-child {
+      transform: translateY(50%) rotate(-45deg);
+    }
+/*burger end*/
+
+.form-select {
+  width: 300px;
+}
+
+.footer {
+  padding-right: 85px;
+  padding-left: 85px;
+}
+
+  }
+  /*media 497 end*/
+
 
 
   /*media 380 start*/
-@media screen and (max-width: 380px) {
-    .header-burger{
-        display: block;
-    }
-
-    .nav {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 10;
-        padding: 50px;
-        transform: translateX(100%);
-        transition: .2s all linear;
-    }
-
-    .nav-active {
-        transform: translateX(0);
-    }
-
-    .nav-list {
-        display: block;
-    }
-    
-    .nav-item {
-        width: 100%;
-        margin-left: 0;
-        margin-bottom: 40px;
-    }
-
-    .nav-item:last-child {
-        margin-bottom: 0;
-    }
-
-    .nav-link {
-        font-size: 50px;
-        line-height: 70px;
-    }
-
-    .nav-close {
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        z-index: 11;
-      }
-    
-    .nav-close-line {
-        display: block;
-        width: 100%;
-        height: 2px;
-        background-color: var(--light-grey-color);
-        position: absolute;
-        top: 50%;
-        
-      }
-    
-    .nav-close-line:first-child {
-        transform: translateY(50%) rotate(45deg);
-      }
-    
-    .nav-close-line:last-child {
-        transform: translateY(50%) rotate(-45deg);
-      }
+@media screen and (max-width: 381px) {
+  .welcome-container {
+    padding: 10px 25px 24px;
 }
+   
+  h1 {
+    font-size: 25px;
+    line-height: 35px;
+    padding-bottom: 23px;
+}
+
+.welcome-subcontainer p {
+  padding-left: 0px;
+  padding-bottom: 22px;
+}
+
+.button-learn {
+  width: 100px;
+  height: 34.14px;
+  font-size: 10px;
+  line-height: 20px;
+  padding: 8px 16px;
+}
+
+.about-container {
+  padding: 30px 25px;
+}
+
+.about-container h2 {
+  padding: 0;
+  margin-bottom: 19px;
+  font-size: 25px;
+  line-height: 33px;
+}
+
+.about-subcontainer p {
+  font-size: 15px;
+  line-height: 25px;
+}
+
+.about-subcontainer {
+  margin-bottom: 0;
+}
+
+.about-subcontainer-img {
+  min-width: 150px;
+  min-height: 147px;
+}
+
+#service {
+  padding: 30px 25px 27px;
+}
+
+.services-content h2 {
+  font-size: 25px;
+  line-height: 33px;
+  padding-bottom: 29px;
+}
+
+button {
+  width: 121px;
+  height: 35px;
+  font-size: 15px;
+  line-height: 20px;
+  padding: 8px 22px;
+}
+
+.services-container {
+  justify-content: center;
+}
+
+.services-content-img {
+  width: 279px;
+  height: 350px;
+}
+
+.services-container p {
+  max-width: 201px;
+  margin: 10px auto 20px;
+}
+
+.services-container > div {
+  margin-bottom: 34px;
+}
+
+.services-container > div:last-child {
+  margin-bottom: 0;
+}
+
+.accordion {
+  padding: 29px 22px;
+  width: 224px;
+  height: 235px;
+}
+
+.accordion__item {
+  margin-bottom: 13.92px;
+}
+
+.accordion__item:last-child {
+  margin-bottom: 0;
+}
+
+.accordion__header {
+  padding-left: 30px;
+  width: 180px;
+  height: 49.72px;
+  font-size: 15px;
+  
+}
+
+.prices-subcontainer-right > p {
+  font-size: 20px;
+  padding-bottom: 14px;
+}
+
+.contacts-container h2 {
+  font-size: 25px;
+  line-height: 33px;
+}
+
+.form-select {
+  margin-top: 80px;
+  padding-bottom: 132px;
+}
+
+.footer-RSschool {
+  padding: 16px 0 3px;
+}
+
   /*media 380 end*/
+
+
+  /*media end*/
