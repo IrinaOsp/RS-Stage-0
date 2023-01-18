@@ -840,8 +840,23 @@ html, body {
     
     .prices-subcontainer-right-sub-img {
       margin-top: 34px;
-      height: 40%;
-      width: auto;
+      margin-bottom: 0;
+      height: 175px;
+      width: 152px;
+  }
+
+  .contacts-container h2 {
+    padding-top: 0;
+    padding-left: 0;
+  } 
+
+  .contacts-img {
+    margin-left: 33%;
+    margin-right: auto;
+}
+
+  .form-select {
+    margin-top: 100px;
   }
 
   .footer {
@@ -871,6 +886,10 @@ html, body {
 
   .footer-networks {
     flex-basis: 100%;
+  }
+
+  .footer-networks-list {
+    padding-top: 10px;
   }
 
   .footer-networks-list > li {
