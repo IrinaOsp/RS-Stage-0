@@ -8,87 +8,6 @@
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="icon" href="./assets/img/logo_vector.svg" type="image/svg" sizes="32x32">
     <title>Plant store</title>
-<!--УБРАТЬ В JS
-    <script>
-     class ItcAccordion {
-      constructor(target, config) {
-        this._el = typeof target === 'string' ? document.querySelector(target) : target;
-        const defaultConfig = {
-          alwaysOpen: true,
-          duration: 350
-        };
-        this._config = Object.assign(defaultConfig, config);
-        this.addEventListener();
-      }
-      addEventListener() {
-        this._el.addEventListener('click', (e) => {
-          const elHeader = e.target.closest('.accordion__header');
-          if (!elHeader) {
-            return;
-          }
-          if (!this._config.alwaysOpen) {
-            const elOpenItem = this._el.querySelector('.accordion__item_show');
-            if (elOpenItem) {
-              elOpenItem !== elHeader.parentElement ? this.toggle(elOpenItem) : null;
-            }
-          }
-          this.toggle(elHeader.parentElement);
-        });
-      }
-      show(el) {
-        const elBody = el.querySelector('.accordion__body');
-        if (elBody.classList.contains('collapsing') || el.classList.contains('accordion__item_show')) {
-          return;
-        }
-        elBody.style['display'] = 'block';
-        const height = elBody.offsetHeight;
-        elBody.style['height'] = 0;
-        elBody.style['overflow'] = 'hidden';
-        elBody.style['transition'] = `height ${this._config.duration}ms ease`;
-        elBody.classList.add('collapsing');
-        el.classList.add('accordion__item_slidedown');
-        elBody.offsetHeight;
-        elBody.style['height'] = `${height}px`;
-        window.setTimeout(() => {
-          elBody.classList.remove('collapsing');
-          el.classList.remove('accordion__item_slidedown');
-          elBody.classList.add('collapse');
-          el.classList.add('accordion__item_show');
-          elBody.style['display'] = '';
-          elBody.style['height'] = '';
-          elBody.style['transition'] = '';
-          elBody.style['overflow'] = '';
-        }, this._config.duration);
-      }
-      hide(el) {
-        const elBody = el.querySelector('.accordion__body');
-        if (elBody.classList.contains('collapsing') || !el.classList.contains('accordion__item_show')) {
-          return;
-        }
-        elBody.style['height'] = `${elBody.offsetHeight}px`;
-        elBody.offsetHeight;
-        elBody.style['display'] = 'block';
-        elBody.style['height'] = 0;
-        elBody.style['overflow'] = 'hidden';
-        elBody.style['transition'] = `height ${this._config.duration}ms ease`;
-        elBody.classList.remove('collapse');
-        el.classList.remove('accordion__item_show');
-        elBody.classList.add('collapsing');
-        window.setTimeout(() => {
-          elBody.classList.remove('collapsing');
-          elBody.classList.add('collapse');
-          elBody.style['display'] = '';
-          elBody.style['height'] = '';
-          elBody.style['transition'] = '';
-          elBody.style['overflow'] = '';
-        }, this._config.duration);
-      }
-      toggle(el) {
-        el.classList.contains('accordion__item_show') ? this.hide(el) : this.show(el);
-      }
-    }
-    </script> -->
-
 </head>
 <body>
     <header class="header">
@@ -235,49 +154,43 @@
                             <div class="accordion__header">
                                 Basics
                             </div>
-                            <!--заготовка под аккордеон
+                            
                                 <div class="accordion__body">
                                 <div class="accordion__content">
+                                    <hr class="accordion__content_line">
                                     <p class="accordion__content_text">Release of Letraset sheets containing Lorem Ipsum passages, and more recently</p>
                                     <p class="accordion__content_price"><span class="accordion__content_span">$15</span> / per hour</p>
                                     <button class="accordion__content_button">Order</button>
                                 </div> 
-                            </div> -->
+                            </div> 
                         </div>                    
                         <div class="accordion__item">
                             <div class="accordion__header">
                             Standard
                             </div>
-                            <!--заготовка под аккордеон
                             <div class="accordion__body">
                             <div class="accordion__content">
+                                <hr class="accordion__content_line">
                                 <p class="accordion__content_text">Release of Letraset sheets containing Lorem Ipsum passages, and more recently</p>
                                 <p class="accordion__content_price"><span class="accordion__content_span">$25</span> / per hour</p>
                                 <button class="accordion__content_button">Order</button>
                             </div>
-                            </div>  -->
+                            </div>  
                         </div>
                         <div class="accordion__item">
                             <div class="accordion__header">
                             Pro care
                             </div>
-                            <!--заготовка под аккордеон
                             <div class="accordion__body">
                             <div class="accordion__content">
+                                <hr class="accordion__content_line">
                                 <p class="accordion__content_text">Release of Letraset sheets containing Lorem Ipsum passages, and more recently</p>
                                 <p class="accordion__content_price"><span class="accordion__content_span">$35</span> / per hour</p>
                                 <button class="accordion__content_button">Order</button>
                             </div>
-                            </div> -->
+                            </div> 
                         </div>
                     </div>
-             
-                    <!--will go to JS <script>
-                        new ItcAccordion(document.querySelector('.accordion'), {
-                          alwaysOpen: false
-                        });
-                      </script> -->
-
                 </div>
                 
                 <div class="prices-subcontainer-right">
@@ -285,7 +198,7 @@
                     <div class="prices-subcontainer-right-sub">
                         <button>Contact us</button>
                         <div class="prices-subcontainer-right-sub-img">
-                            <!--<img src="./assets/img/leafs-small.png" alt="leafs">-->
+
                         </div>
                     </div>
                 </div>
@@ -311,6 +224,7 @@
                             <div class="select-city-header">
                                 <p>City</p>
                             </div>
+                            
                             <div class="select-city-body">
                                 <div class="select-option">
                                     <p>Canandaigua, NY</p>
@@ -325,6 +239,7 @@
                                     <p>Sherrill, NY</p>
                                 </div>
                             </div>
+
                         </div>
                     </form>
                 </div>
@@ -350,7 +265,7 @@
             </div>
         </div>
     </footer>
-    <!--<script src="./index.js"></script> подключить JS-->
+    <script src="./index.js"></script>
     <script src="./main.js"></script>
 </body>
 </html>

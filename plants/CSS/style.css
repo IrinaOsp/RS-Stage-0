@@ -405,12 +405,16 @@ html, body {
     padding: 34px 41px;
     background-color: #fff;
     width: 332px;
-    height: 282.01px;
+    
   }
 
   .accordion__item {
     margin-bottom: 32px;  /*дает расстояние между кнопками*/
     background-color: #fff;
+  }
+
+  .accordion__item:last-child {
+    margin-bottom: 0;
   }
 
   .accordion__header {
@@ -450,7 +454,6 @@ html, body {
     
     .accordion__item_show .accordion__header { /*красит в зеленый открытый хэдер*/
     background-color: #D6E7D2;
-      border-bottom: 0.5px solid #AEA1A1; /*палочка*/
     }
 
   .accordion__header:hover {  /*цвет кнопки при наведении*/
@@ -470,6 +473,11 @@ html, body {
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     font: normal 300 10px/10px Inter;
+  }
+
+  .accordion__content_line {
+    border: 0.5px solid #AEA1A1;
+    margin-top: -10px;
   }
 
   .accordion__content_text {
@@ -519,6 +527,7 @@ html, body {
     padding-top: 53px;
     display: flex;
     justify-content: space-between;
+    align-content: center;
     flex-wrap: wrap-reverse;
   }
 
@@ -554,6 +563,7 @@ html, body {
     calc(100% - .1em) .1em;
     background-repeat: no-repeat;
     cursor: pointer;
+   
   }
 
   .select-city-header > p {
@@ -587,6 +597,11 @@ html, body {
     padding-bottom: 31px;
     padding-top: 15px;
     background-color: #DCE9D9;
+  }
+
+  .select-city-body-show { /*добавится JS*/
+    display:block;
+    /*transition: all linear 3s;*/
   }
 
   .select-option { /*строки*/
@@ -690,7 +705,7 @@ html, body {
   }
 
   .services-content h2 {
-    padding-bottom: 41px;
+    padding-bottom: 42px;
   }
 
   .services-container {
@@ -729,12 +744,12 @@ html, body {
     }
 
     .prices-container {
-      padding: 40px 50px 88px;
+      padding: 40px 50px 82px;
     }
 
     .prices-subcontainer-left h2 {
       flex-basis: 100%;
-      padding-bottom: 50px;
+      padding-bottom: 57px;
     }
 
     .prices-subcontainer-right > p {
@@ -742,7 +757,7 @@ html, body {
     }
 
     .contacts-container {
-      padding-top: 26px;
+      padding-top: 40px;
       flex-direction: column;
     }
 
@@ -831,7 +846,7 @@ html, body {
     .prices-subcontainer-right > p {
       font-size: 25px;
       line-height: 35px;
-      padding-bottom: 27px;
+      padding-bottom: 29px;
     }
 
 
@@ -857,15 +872,15 @@ html, body {
     }
 
     .services-container p {
-      margin: 10px 39px 20px;
+      margin: 10px 38px 20px;
   }
 
     .prices-subcontainer-right {
-      margin-top: 96px;
+      margin-top: 99px;
     }
     
     .prices-subcontainer-right-sub-img {
-      margin-top: 34px;
+      margin-top: 40px;
       margin-bottom: 0;
       height: 175px;
       width: 152px;
@@ -877,7 +892,7 @@ html, body {
   } 
 
   .contacts-img {
-    margin-left: 33%;
+    margin-left: 25%;
     margin-right: auto;
 }
 
@@ -1027,83 +1042,25 @@ html, body {
 
   /*media 497 start*/
   @media screen and (max-width: 497px) {
-    .header-container {
-      align-items: flex-start;
-    }
-    .header-burger{
-      display: block;
+    .nav-link {
+      font-size: 13px;
   }
 
-  .nav {
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 10;
-      padding: 50px;
-      transform: translateX(100%);
-      transition: .2s all linear;
-  }
-
-  .nav-active {
-      transform: translateX(0);
-  }
-
-  .nav-list {
-      display: block;
-  }
-  
   .nav-item {
-      width: 100%;
-      margin-left: 0;
-      margin-bottom: 40px;
+    margin-left: 10px;
   }
 
-  .nav-item:last-child {
-      margin-bottom: 0;
+  .nav-item:first-child {
+    margin-left: 0;
   }
-
-  .nav-link {
-      font-size: 50px;
-      line-height: 70px;
-  }
-
-  .nav-close {
-      width: 40px;
-      height: 40px;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 11;
-    }
-  
-  .nav-close-line {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: var(--light-grey-color);
-      position: absolute;
-      top: 50%;
-      
-    }
-  
-  .nav-close-line:first-child {
-      transform: translateY(50%) rotate(45deg);
-    }
-  
-  .nav-close-line:last-child {
-      transform: translateY(50%) rotate(-45deg);
-    }
-/*burger end*/
 
 .form-select {
   width: 300px;
 }
 
 .footer {
-  padding-right: 85px;
-  padding-left: 85px;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
   }
@@ -1112,7 +1069,89 @@ html, body {
 
 
   /*media 380 start*/
-@media screen and (max-width: 381px) {
+@media screen and (max-width: 380px) {
+  .header-container {
+    align-items: flex-start;
+  }
+  .header-burger{
+    display: block;
+}
+
+.nav {
+    width: 100%;
+    height: fit-content;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 50px;
+    transform: translateX(100%);
+    transition: .2s all linear;
+    background-color: #D6E7D2;
+    /*background-color: #000;*/
+}
+
+.nav-active {
+    transform: translateX(0);
+}
+
+.nav-list {
+    display: block;
+    background-color: #D6E7D2;
+}
+
+.nav-item {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 30px;
+    background-color: #D6E7D2;
+}
+
+.nav-item:last-child {
+    margin-bottom: 0;
+}
+
+.nav-link {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 25px;
+  color: var(--gark-grey-color);
+  background-color: #D6E7D2;
+}
+
+.nav-close {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 11;
+    background-color: #D6E7D2;
+  }
+
+.nav-close-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--light-grey-color);
+    position: absolute;
+    top: 50%;
+    
+  }
+
+.nav-close-line:first-child {
+    transform: translateY(50%) rotate(45deg);
+  }
+
+.nav-close-line:last-child {
+    transform: translateY(50%) rotate(-45deg);
+  }
+/*burger end*/
+
+
+
   .welcome-container {
     padding: 10px 25px 24px;
 }
@@ -1228,20 +1267,30 @@ button {
   padding-bottom: 21px;
 }
 
+.contacts-container {
+  padding-top: 25px;
+}
+
 .contacts-container h2 {
   font-size: 25px;
   line-height: 33px;
 }
 
+.select-city-header {
+  background-position: calc(100% - 21px) calc(1em - 1px), calc(100% - 10px) calc(1em + 2px), calc(100% - 0.1em) 0.1em;
+}
+
 .form-select {
   margin-top: 80px;
-  padding-bottom: 132px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 135px;
 }
 
 .footer-RSschool {
   padding: 16px 0 3px;
 }
-
+}
   /*media 380 end*/
 
 
