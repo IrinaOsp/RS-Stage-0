@@ -644,7 +644,7 @@ html, body {
     left: 1px;
     z-index: 1;
     width: 448px;
-    padding: 17px 76px 32px 33px;
+    padding: 17px 33px 32px 33px;
     border: 1px solid #000000;
     border-radius: 20px; 
   }
@@ -655,6 +655,7 @@ html, body {
 
   .contacts-card-info {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .contacts-card-info-titles {
@@ -684,6 +685,8 @@ html, body {
 
   .button-call {
     margin-top: 18px;
+    margin-right: auto;
+    margin-left: auto;
     padding: 7px 29px;
     width: 122px;
     height: 26px;
@@ -759,6 +762,12 @@ html, body {
   }
 
   /*media start*/
+  @media screen and (max-width: 1298px) {
+    .contacts-container {
+      margin-left: 80px;
+      margin-right: 80px;
+    }
+  }
 
 @media screen and (max-width: 1287px) {
   .about-subcontainer-img {
@@ -827,6 +836,10 @@ html, body {
       flex-direction: column;
     }
 
+    .form-select-opened {
+      margin-top: 61px;
+    }
+
     .contacts-header {
       order: -2;
     }
@@ -842,9 +855,12 @@ html, body {
       width: 26vw;
       margin-left: auto;
       margin-right: auto;
+      margin-top: 14px;
     }
 
-    
+    .select-city-body-show {
+     margin-bottom: -200px;
+    }
 
   }
 
@@ -957,9 +973,14 @@ html, body {
     padding-left: 0;
   } 
 
+  .contacts-card {
+    top: 110px;
+  }
+
   .contacts-img {
     margin-left: 25%;
     margin-right: auto;
+    margin-top: 40px;
 }
 
   .form-select {
@@ -1120,9 +1141,37 @@ html, body {
     margin-left: 0;
   }
 
-.form-select {
-  width: 300px;
+  .form-select {
+    width: 300px;
+  }
+
+  .contacts-card {
+    width: 282px;
+    height: 212px;
+    padding: 30px 32px 23px;
+  }
+
+  .contacts-card-info-titles {
+    max-width: 65px;
+    line-height: 20px;
+  }
+
+  .contacts-card-info-titles >p {
+    padding-bottom: 10px;
+  }
+
+  .contacts-card-info-data > p {
+    padding-left: 1px;
+    padding-bottom: 10px;
 }
+
+  .contacts-card-info-data {
+    max-width: 146px;
+    padding-left: 0px;
+    line-height: 20px;
+  }
+
+
 
 .footer {
   padding-right: 40px;
@@ -1333,6 +1382,10 @@ button {
   padding-bottom: 21px;
 }
 
+#contacts {
+  height: 445px;
+}
+
 .contacts-container {
   padding-top: 25px;
 }
@@ -1346,6 +1399,18 @@ button {
   background-position: calc(100% - 21px) calc(1em - 1px), calc(100% - 10px) calc(1em + 2px), calc(100% - 0.1em) 0.1em;
 }
 
+.select-city-body-show {
+  margin-bottom: -100px;
+ }
+
+ .contacts-img {
+  margin-top: 0;
+}
+
+ .contacts-img-hide {
+  display: none;
+ }
+
 .form-select {
   margin-top: 80px;
   margin-right: auto;
@@ -1354,7 +1419,12 @@ button {
 }
 
 .form-select-opened { /*убирает padding через js*/
-  padding-bottom: 20px;
+  padding-bottom: 0px;
+  margin-top: 42px;
+}
+
+.contacts-card {
+  top: 99px;
 }
 
 .footer-RSschool {

@@ -45,10 +45,10 @@ const buttonCall = document.querySelector('.button-call');
       dropDown.classList.toggle('select-city-body-show'); //выпадающий список
     });
     cityHeader.addEventListener('click', () => {
-      mainCityForm.classList.toggle('form-select-opened'); //убирает padding на 380px
+      mainCityForm.classList.add('form-select-opened'); //убирает padding на 380px
     });
     cityHeader.addEventListener('click', () => {
-    cityHeader.classList.toggle('select-city-header-active'); //формат header
+    cityHeader.classList.add('select-city-header-active'); //формат header
     });
     
 }());
@@ -57,6 +57,7 @@ const buttonCall = document.querySelector('.button-call');
     Canandaigua.addEventListener("click", () => {
       dropDown.classList.remove('select-city-body-show');
       contactsCard.classList.add('contacts-card-active');
+      document.querySelector('.contacts-img').classList.add('contacts-img-hide');
       selectedCity.textContent = 'Canandaigua, NY';
       contactCity.textContent = 'Canandaigua, NY';
       contactNumber.textContent = '+1	585 393 0001';
@@ -67,6 +68,7 @@ const buttonCall = document.querySelector('.button-call');
     NewYork.addEventListener("click", () => {
       dropDown.classList.remove('select-city-body-show');
       contactsCard.classList.add('contacts-card-active');
+      document.querySelector('.contacts-img').classList.add('contacts-img-hide');
       selectedCity.textContent = 'New York City';
       contactCity.textContent = 'New York City';
       contactNumber.textContent = '+1	212	456 0002';
@@ -77,6 +79,7 @@ const buttonCall = document.querySelector('.button-call');
     Yonkers.addEventListener("click", () => {
       dropDown.classList.remove('select-city-body-show');
       contactsCard.classList.add('contacts-card-active');
+      document.querySelector('.contacts-img').classList.add('contacts-img-hide');
       selectedCity.textContent = 'Yonkers, NY';
       contactCity.textContent = 'Yonkers, NY';
       contactNumber.textContent = '+1	914	678 0003';
@@ -87,6 +90,7 @@ const buttonCall = document.querySelector('.button-call');
     Sherrill.addEventListener("click", () => {
       dropDown.classList.remove('select-city-body-show');
       contactsCard.classList.add('contacts-card-active');
+      document.querySelector('.contacts-img').classList.add('contacts-img-hide');
       selectedCity.textContent = 'Sherrill, NY';
       contactCity.textContent = 'Sherrill, NY';
       contactNumber.textContent = '+1	315	908 0004';
@@ -94,6 +98,7 @@ const buttonCall = document.querySelector('.button-call');
       buttonCall.href='tel:+1315900004';
     });
 
+  
 }());
 
 
