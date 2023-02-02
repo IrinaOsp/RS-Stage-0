@@ -23,6 +23,62 @@
     }
 }());
 
+//Service buttons
+
+const buttonsService = document.querySelectorAll('.button_service');
+const allCards = document.querySelectorAll('.services-container-item');
+
+buttonsService.forEach(button => {
+  button.addEventListener('click', () => changeClass(button));
+})
+
+let activeButtonsId = [] //
+let activeButtonsCount = 0; //
+
+
+  function changeClass(button) {
+    if (button.classList.contains('button_service_disabled')) {
+      button.classList.remove('button_service_disabled');
+  }
+    if (button.classList.contains('button_service_active')) {
+        button.classList.remove('button_service_active');
+        activeButtonsCount--;
+        activeButtonsId.pop(button.id)
+    } else if (activeButtonsCount < 2) {
+        button.classList.add('button_service_active');
+        activeButtonsCount++;
+        activeButtonsId.push(button.id)
+    } else {
+        button.classList.add('button_service_disabled');
+    }
+    
+    changeBlur(activeButtonsId)
+}
+
+function changeBlur(activeButtonsId) {
+  if(activeButtonsId.length === 0) {
+    allCards.forEach(function(item) {
+      item.style.filter = "";
+      });
+  } else if(activeButtonsId.length === 1) {
+    allCards.forEach(function(item) {
+      if(item.classList.contains(activeButtonsId[0])) {
+        item.style.filter = "";
+      } else {
+        item.style.filter = "blur(2px)";
+      }
+      });
+  } else {
+    allCards.forEach(function(item) {
+      if(item.classList.contains(activeButtonsId[0]) || item.classList.contains(activeButtonsId[1])) {
+        item.style.filter = "";
+      } else {
+        item.style.filter = "blur(2px)";
+      }
+    });
+  }
+}
+
 //City dropdown
 const cityForm = document.querySelector('.select-city');
 const dropDown = document.querySelector('.select-city-body');
@@ -102,26 +158,6 @@ const buttonCall = document.querySelector('.button-call');
 }());
 
 
-/* Когда пользователь нажимает на кнопку,
-переключение между скрытием и отображением раскрывающегося содержимого */
-/*function dropFunction() {
-    document.getElementById("myDropdown").classList.toggle("select-city-body-show");
-  }
-  
-  // Закройте выпадающее меню, если пользователь щелкает за его пределами
-  window.onclick = function(event) {
-    if (!event.target.matches('select-city-header')) {
-      var dropdowns = document.getElementsByClassName("select-city-body");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('select-city-body-show')) {
-          openDropdown.classList.remove('select-city-body-show');
-        }
-      }
-    }
-  }
-*/
 //accordion
 /*
 class ItcAccordion {
@@ -205,8 +241,82 @@ class ItcAccordion {
 
 
   //отдельный скрипт под аккордеон
- /* new ItcAccordion(document.querySelector('.accordion'), {
+  /*
+  new ItcAccordion(document.querySelector('.accordion'), {
     alwaysOpen: false
   });*/
+  const itemPrice = [...document.querySelectorAll('accordion__item')];
+  const accordItem = document.querySelector('.accordion__item'); //
+  const accordBody = document.querySelector('.accordion__body'); //
+  let activePrice;
 
-  //скрипт для City
+  itemPrice.forEach(el => {
+    el.addEventListener("click", function (e) {
+      if (activePrice !== el && activePrice != undefined) {
+         changeActivePrice(activePrice);
+      }
+      changeActivePrice(el);
+
+      activePrice == el ? activePrice = undefined : activePrice = el;
+   });
+});
+
+function changeActivePrice(el) {
+  let item = el.parentElement.parentElement;
+  item.classList.toggle('.accordion__body_show');
+
+  let content = el.parentElement.nextElementSibling;
+  content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 17 + "px"
+/*
+  el.classList.toggle('arrow-before');
+  el.classList.toggle('arrow-before__revert');
+  el.firstElementChild.classList.toggle('arrow-down');
+  el.firstElementChild.classList.toggle('arrow-up');*/
+}
+
+/*
+  const buttonsTariffsItems = [...document.querySelectorAll('.arrow')];
+  const arrowTariffsItems = [...document.querySelectorAll('.arrow-down')];
+const itemTarif = [...document.querySelectorAll('item-tarif')];
+let activeItem;
+
+buttonsTariffsItems.forEach(el => {
+   el.addEventListener("click", function (e) {
+      if (activeItem !== el && activeItem != undefined) {
+         changeActiveItem(activeItem);
+      }
+      changeActiveItem(el);
+
+      activeItem == el ? activeItem = undefined : activeItem = el;
+   });
+});
+
+function changeActiveItem(el) {
+   let item = el.parentElement.parentElement;
+   item.classList.toggle('item__background-active');
+
+   let content = el.parentElement.nextElementSibling;
+   content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 17 + "px"
+
+   el.classList.toggle('arrow-before');
+   el.classList.toggle('arrow-before__revert');
+   el.firstElementChild.classList.toggle('arrow-down');
+   el.firstElementChild.classList.toggle('arrow-up');
+}
+ 
+ */
+
+/*
+    (function () {   
+    cityHeader.addEventListener('click', () => {
+      dropDown.classList.toggle('select-city-body-show'); //выпадающий список
+    });
+    cityHeader.addEventListener('click', () => {
+      mainCityForm.classList.add('form-select-opened'); //убирает padding на 380px
+    });
+    cityHeader.addEventListener('click', () => {
+    cityHeader.classList.add('select-city-header-active'); //формат header
+    });
+    
+}());
+*/

@@ -288,6 +288,26 @@ html, body {
     padding-top: 5px;
   }
 
+  .button_service {
+    transition: 1s filter linear;
+  }
+
+  .button_service_active {
+    background-color: #E06733;
+    color: #fff;
+  }
+
+  .button_service_disabled {
+    background-color: none;
+    color: var(--orange-color);
+  }
+
+  .button_service_disabled:hover {
+    background-color: transparent;
+    color: var(--light-grey-color);
+    filter: blur(.3px);
+  }
+
   .services-container {
     display: flex;
     flex-wrap: wrap;
@@ -301,6 +321,7 @@ html, body {
     align-items: center;
     margin-bottom: 53px;    
     width: 330px;
+    transition: 1s filter linear;
   }
 
   .services-container-img {
@@ -518,8 +539,12 @@ html, body {
 
          
     /*скрывает контент*/
-  .accordion__item:not(.accordion__item_show) .accordion__body {
+  .accordion__body {
     display: none;
+  }
+
+  .accordion__body_show {
+    display: block;
   }
 
   .contacts-container {
