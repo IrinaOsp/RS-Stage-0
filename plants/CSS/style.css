@@ -101,9 +101,7 @@ html, body {
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-between;
-    padding-top: 42px;
-    /*padding: 42px 109px 42px 111px;*/
-    
+    padding-top: 42px;   
   }
 
   .logo-container {
@@ -785,7 +783,7 @@ html, body {
     height: 32px;
   }
 
-  /*media start*/
+  /*-----------------media start-----------------------*/
   @media screen and (max-width: 1298px) {
     .contacts-container {
       margin-left: 80px;
@@ -1382,7 +1380,6 @@ button {
 .accordion {
   padding: 29px 22px;
   width: 224px;
-  height: 235px;
 }
 
 .accordion__item {
@@ -1394,11 +1391,16 @@ button {
 }
 
 .accordion__header {
-  padding-left: 30px;
+  padding-left: 21px;
+  padding-right: 20px;
   width: 180px;
   height: 49.72px;
   font-size: 15px;
-  
+}
+
+.accordion__content {
+  padding: 6px 21px 12px 20px;
+  width: 180px;
 }
 
 .prices-subcontainer-right > p {
