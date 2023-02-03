@@ -101,9 +101,7 @@ html, body {
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-between;
-    padding-top: 42px;
-    /*padding: 42px 109px 42px 111px;*/
-    
+    padding-top: 42px;   
   }
 
   .logo-container {
@@ -288,6 +286,26 @@ html, body {
     padding-top: 5px;
   }
 
+  .button_service {
+    transition: 1s filter linear;
+  }
+
+  .button_service_active {
+    background-color: #E06733;
+    color: #fff;
+  }
+
+  .button_service_disabled {
+    background-color: none;
+    color: var(--orange-color);
+  }
+
+  .button_service_disabled:hover {
+    background-color: transparent;
+    color: var(--light-grey-color);
+    filter: blur(.3px);
+  }
+
   .services-container {
     display: flex;
     flex-wrap: wrap;
@@ -301,6 +319,7 @@ html, body {
     align-items: center;
     margin-bottom: 53px;    
     width: 330px;
+    transition: 1s filter linear;
   }
 
   .services-container-img {
@@ -405,7 +424,6 @@ html, body {
     padding: 34px 41px;
     background-color: #fff;
     width: 332px;
-    
   }
 
   .accordion__item {
@@ -423,36 +441,35 @@ html, body {
     align-items: center;
     height: 50px;
     width: 250px;
-    padding-left: 40px;  
-    /*padding-top: 16px;*/
+    padding-left: 40px; 
+    padding-right: 40px; 
     color: #000;
     font: normal 700 20px/20px Inter;
     background-color: #EDF2EC;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     cursor: pointer;
-    transition: background-color 0.1s linear;
+    transition: background-color 0.3s linear;
   }
 
   .accordion__header::after {   /*полож треугольника*/
     flex-shrink: 0;
-    width: 60px; /*расстояние от левого края*/
+    width: 17px; /*расстояние от левого края*/
     height: 18px;
     margin-left: auto;
     background-image: url(../assets/img/accordion_btn.svg);
     background-repeat: no-repeat;
     background-size: 1rem;
     content: "";
-    transition: transform 0.1s linear;
+    transition: transform 0.3s linear;
   }
 
-  .accordion__item_show .accordion__header::after,
-  .accordion__item_slidedown .accordion__header::after {   /*разворот треуг на 180*/
+  .accordion__item_active .accordion__header::after {   /*разворот треуг на 180*/
     background-image: url(../assets/img/accordion_btn_open.svg);
-    /*transform: rotate(-180deg);*/
+    transform: rotate(-180deg);
   }
     
-    .accordion__item_show .accordion__header { /*красит в зеленый открытый хэдер*/
+    .accordion__item_active .accordion__header { /*красит в зеленый открытый хэдер*/
     background-color: #D6E7D2;
     }
 
@@ -464,10 +481,21 @@ html, body {
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
   }
-
+    /*скрывает контент*/
+ 
+    .accordion__body {
+      display: none;
+      background-color: #fff;
+    }
+  
+    .accordion__body_active {
+      display: block;
+    }
+    
   .accordion__content {  /*формат открытого контента*/
+    margin-top: -17px;
     padding: 6px 41px 12px 40px;
-    height: 104px;
+    max-height: 121px;
     width: 250px;
     background: #D6E7D2;
     border-bottom-right-radius: 20px;
@@ -477,7 +505,7 @@ html, body {
 
   .accordion__content_line {
     border: 0.5px solid #AEA1A1;
-    margin-top: -10px;
+    margin-top: 10px;
   }
 
   .accordion__content_text {
@@ -507,19 +535,13 @@ html, body {
     color: var(--light-grey-color);
     background-color: #fff;
     border-radius: 10px;
+    border-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     max-width: 86px;
     max-height: 25px;
     margin-top: 10px;    
-  }
-
-
-         
-    /*скрывает контент*/
-  .accordion__item:not(.accordion__item_show) .accordion__body {
-    display: none;
   }
 
   .contacts-container {
@@ -545,8 +567,10 @@ html, body {
   }
   /*стилизация выпадающего списка*/
   .form-select {
+    position: relative;
     margin-top: 95px;
     width: 450px;
+    transition: .2s all linear;
   }
 
   .select-city-header {
@@ -579,7 +603,7 @@ html, body {
     box-shadow: none;
   }
 
-    .select-city-header:active {
+    .select-city-header:active, .select-city-header-active {
     padding-left: 35px;
     background-color: #C1E698;
     border: 1px solid #D6E7D2;
@@ -594,14 +618,15 @@ html, body {
 
   .select-city-body { /*скрытый выпадающий список*/
     display: none;
-    padding-bottom: 31px;
+    padding-bottom: 24.6px;
     padding-top: 15px;
     background-color: #DCE9D9;
   }
 
   .select-city-body-show { /*добавится JS*/
     display:block;
-    /*transition: all linear 3s;*/
+    position: relative;
+    z-index: 2;
   }
 
   .select-option { /*строки*/
@@ -633,6 +658,72 @@ html, body {
   .select-option: {
     background-color: #C1E698;
   }
+
+  .contacts-card {
+    display: none;
+    position: absolute;
+    top: 97px;
+    left: 1px;
+    z-index: 1;
+    width: 448px;
+    padding: 17px 33px 32px 33px;
+    border: 1px solid #000000;
+    border-radius: 20px; 
+  }
+
+  .contacts-card-active { /*включается js*/
+    display: block;
+  }
+
+  .contacts-card-info {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .contacts-card-info-titles {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 40px; 
+    letter-spacing: 0.05em;
+    color: #000000;
+  }
+
+  .contacts-card-info-data { 
+    padding-left: 14px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 40px;
+    letter-spacing: 0.05em;
+    color: #717171;
+  }
+
+  .contacts-card-info-data > p {
+  padding-left: 4px;
+  }
+
+  .button-call {
+    margin-top: 18px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 7px 29px;
+    width: 122px;
+    height: 26px;
+    font-family: 'Inika';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 13px;
+    text-decoration: none;
+    text-align: center;
+    color: #717171;
+    border: 1px solid #E06733;
+    border-radius: 5px;
+  }
+
 
 
   .footer {
@@ -692,7 +783,13 @@ html, body {
     height: 32px;
   }
 
-  /*media start*/
+  /*-----------------media start-----------------------*/
+  @media screen and (max-width: 1298px) {
+    .contacts-container {
+      margin-left: 80px;
+      margin-right: 80px;
+    }
+  }
 
 @media screen and (max-width: 1287px) {
   .about-subcontainer-img {
@@ -761,6 +858,10 @@ html, body {
       flex-direction: column;
     }
 
+    .form-select-opened {
+      margin-top: 61px;
+    }
+
     .contacts-header {
       order: -2;
     }
@@ -776,9 +877,12 @@ html, body {
       width: 26vw;
       margin-left: auto;
       margin-right: auto;
+      margin-top: 14px;
     }
 
-    
+    .select-city-body-show {
+     margin-bottom: -200px;
+    }
 
   }
 
@@ -891,9 +995,14 @@ html, body {
     padding-left: 0;
   } 
 
+  .contacts-card {
+    top: 110px;
+  }
+
   .contacts-img {
     margin-left: 25%;
     margin-right: auto;
+    margin-top: 40px;
 }
 
   .form-select {
@@ -1054,9 +1163,37 @@ html, body {
     margin-left: 0;
   }
 
-.form-select {
-  width: 300px;
+  .form-select {
+    width: 300px;
+  }
+
+  .contacts-card {
+    width: 282px;
+    height: 212px;
+    padding: 30px 32px 23px;
+  }
+
+  .contacts-card-info-titles {
+    max-width: 65px;
+    line-height: 20px;
+  }
+
+  .contacts-card-info-titles >p {
+    padding-bottom: 10px;
+  }
+
+  .contacts-card-info-data > p {
+    padding-left: 1px;
+    padding-bottom: 10px;
 }
+
+  .contacts-card-info-data {
+    max-width: 146px;
+    padding-left: 0px;
+    line-height: 20px;
+  }
+
+
 
 .footer {
   padding-right: 40px;
@@ -1243,7 +1380,6 @@ button {
 .accordion {
   padding: 29px 22px;
   width: 224px;
-  height: 235px;
 }
 
 .accordion__item {
@@ -1255,16 +1391,25 @@ button {
 }
 
 .accordion__header {
-  padding-left: 30px;
+  padding-left: 21px;
+  padding-right: 20px;
   width: 180px;
   height: 49.72px;
   font-size: 15px;
-  
+}
+
+.accordion__content {
+  padding: 6px 21px 12px 20px;
+  width: 180px;
 }
 
 .prices-subcontainer-right > p {
   font-size: 20px;
   padding-bottom: 21px;
+}
+
+#contacts {
+  height: 445px;
 }
 
 .contacts-container {
@@ -1280,11 +1425,32 @@ button {
   background-position: calc(100% - 21px) calc(1em - 1px), calc(100% - 10px) calc(1em + 2px), calc(100% - 0.1em) 0.1em;
 }
 
+.select-city-body-show {
+  margin-bottom: -100px;
+ }
+
+ .contacts-img {
+  margin-top: 0;
+}
+
+ .contacts-img-hide {
+  display: none;
+ }
+
 .form-select {
   margin-top: 80px;
   margin-right: auto;
   margin-left: auto;
   padding-bottom: 135px;
+}
+
+.form-select-opened { /*убирает padding через js*/
+  padding-bottom: 0px;
+  margin-top: 42px;
+}
+
+.contacts-card {
+  top: 99px;
 }
 
 .footer-RSschool {
