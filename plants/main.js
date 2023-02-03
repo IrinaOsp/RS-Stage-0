@@ -79,6 +79,71 @@ function changeBlur(activeButtonsId) {
   }
 }
 
+//Accordion
+
+const accordItem = document.querySelector('.accordion__item'); //
+const accordHeaders = document.querySelectorAll('.accordion__header'); //
+const accordItems = document.querySelectorAll('.accordion__item'); //
+const accordBodies = document.querySelectorAll('.accordion__body'); //
+
+
+const accordBody = document.querySelector('.accordion__body'); //
+
+accordHeaders.forEach(function(accHeader) {
+  accHeader.addEventListener("click", () => { //при клике на header
+    let clickedBody = accHeader.nextElementSibling;
+    let clickedItem = accHeader.parentElement;
+    accordBodies.forEach(function(body) {
+      if(clickedBody !==body && body.classList.contains('accordion__body_active')) {
+        body.classList.remove('accordion__body_active')    
+        body.parentElement.classList.remove('accordion__item_active')
+          } 
+
+            clickedBody.classList.toggle('accordion__body_active')
+            clickedItem.classList.toggle('accordion__item_active')
+          
+        
+        //if(item.classList.contains('accordion__item_active')){
+          //body.classList.remove('accordion__body_active')
+          //body.parentElement.classList.remove('accordion__item_active')
+        //} else {
+          //body.classList.toggle('accordion__body_active')
+          //body.parentElement.classList.toggle('accordion__item_active')
+        //}
+      })
+    
+
+ });
+
+})
+  
+
+
+/*
+const itemPrice = [...document.querySelectorAll('accordion__item')];
+const accordItem = document.querySelector('.accordion__item'); //
+const accordBody = document.querySelector('.accordion__body'); //
+let activePrice;
+
+accordItems.forEach(item => {
+  item.addEventListener("click", function (e) {
+    if (activePrice !== el && activePrice != undefined) {
+       changeActivePrice(activePrice);
+    }
+    changeActivePrice(el);
+
+    activePrice == el ? activePrice = undefined : activePrice = el;
+ });
+});
+
+function changeActivePrice(el) {
+let item = el.parentElement.parentElement;
+item.classList.toggle('.accordion__body_show');
+
+let content = el.parentElement.nextElementSibling;
+content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 17 + "px"
+*/
+
 //City dropdown
 const cityForm = document.querySelector('.select-city');
 const dropDown = document.querySelector('.select-city-body');
@@ -245,34 +310,13 @@ class ItcAccordion {
   new ItcAccordion(document.querySelector('.accordion'), {
     alwaysOpen: false
   });*/
-  const itemPrice = [...document.querySelectorAll('accordion__item')];
-  const accordItem = document.querySelector('.accordion__item'); //
-  const accordBody = document.querySelector('.accordion__body'); //
-  let activePrice;
 
-  itemPrice.forEach(el => {
-    el.addEventListener("click", function (e) {
-      if (activePrice !== el && activePrice != undefined) {
-         changeActivePrice(activePrice);
-      }
-      changeActivePrice(el);
-
-      activePrice == el ? activePrice = undefined : activePrice = el;
-   });
-});
-
-function changeActivePrice(el) {
-  let item = el.parentElement.parentElement;
-  item.classList.toggle('.accordion__body_show');
-
-  let content = el.parentElement.nextElementSibling;
-  content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 17 + "px"
 /*
   el.classList.toggle('arrow-before');
   el.classList.toggle('arrow-before__revert');
   el.firstElementChild.classList.toggle('arrow-down');
   el.firstElementChild.classList.toggle('arrow-up');*/
-}
+
 
 /*
   const buttonsTariffsItems = [...document.querySelectorAll('.arrow')];

@@ -426,7 +426,6 @@ html, body {
     padding: 34px 41px;
     background-color: #fff;
     width: 332px;
-    
   }
 
   .accordion__item {
@@ -444,36 +443,35 @@ html, body {
     align-items: center;
     height: 50px;
     width: 250px;
-    padding-left: 40px;  
-    /*padding-top: 16px;*/
+    padding-left: 40px; 
+    padding-right: 40px; 
     color: #000;
     font: normal 700 20px/20px Inter;
     background-color: #EDF2EC;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     cursor: pointer;
-    transition: background-color 0.1s linear;
+    transition: background-color 0.3s linear;
   }
 
   .accordion__header::after {   /*полож треугольника*/
     flex-shrink: 0;
-    width: 60px; /*расстояние от левого края*/
+    width: 17px; /*расстояние от левого края*/
     height: 18px;
     margin-left: auto;
     background-image: url(../assets/img/accordion_btn.svg);
     background-repeat: no-repeat;
     background-size: 1rem;
     content: "";
-    transition: transform 0.1s linear;
+    transition: transform 0.3s linear;
   }
 
-  .accordion__item_show .accordion__header::after,
-  .accordion__item_slidedown .accordion__header::after {   /*разворот треуг на 180*/
+  .accordion__item_active .accordion__header::after {   /*разворот треуг на 180*/
     background-image: url(../assets/img/accordion_btn_open.svg);
-    /*transform: rotate(-180deg);*/
+    transform: rotate(-180deg);
   }
     
-    .accordion__item_show .accordion__header { /*красит в зеленый открытый хэдер*/
+    .accordion__item_active .accordion__header { /*красит в зеленый открытый хэдер*/
     background-color: #D6E7D2;
     }
 
@@ -485,10 +483,21 @@ html, body {
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
   }
-
+    /*скрывает контент*/
+ 
+    .accordion__body {
+      display: none;
+      background-color: #fff;
+    }
+  
+    .accordion__body_active {
+      display: block;
+    }
+    
   .accordion__content {  /*формат открытого контента*/
+    margin-top: -17px;
     padding: 6px 41px 12px 40px;
-    height: 104px;
+    max-height: 121px;
     width: 250px;
     background: #D6E7D2;
     border-bottom-right-radius: 20px;
@@ -498,7 +507,7 @@ html, body {
 
   .accordion__content_line {
     border: 0.5px solid #AEA1A1;
-    margin-top: -10px;
+    margin-top: 10px;
   }
 
   .accordion__content_text {
@@ -528,23 +537,13 @@ html, body {
     color: var(--light-grey-color);
     background-color: #fff;
     border-radius: 10px;
+    border-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     max-width: 86px;
     max-height: 25px;
     margin-top: 10px;    
-  }
-
-
-         
-    /*скрывает контент*/
-  .accordion__body {
-    display: none;
-  }
-
-  .accordion__body_show {
-    display: block;
   }
 
   .contacts-container {
