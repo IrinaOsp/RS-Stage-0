@@ -78,8 +78,11 @@ function setLocalStorage() {
   function setBg() {
     randomNumStr = randomNum.toString();
     bgNum = randomNumStr.padStart(2, "0"); 
-    let link = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
-    document.body.style.backgroundImage = `url(${link})`;
+    const img = new Image();
+    img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
+    img.onload = () => {      
+        document.body.style.backgroundImage = `url(${img.src})`;
+    }; 
   }
   setBg()
 
