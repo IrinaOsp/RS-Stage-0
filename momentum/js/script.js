@@ -71,12 +71,12 @@ function setLocalStorage() {
 
   //Фоновое изображение
 
- function getRandomNum() {
-    min = Math.ceil(1);
-    max = Math.floor(20);
-    return Math.floor(Math.random() * (20 - 1 + 1)) + 1; //Максимум и минимум включаются
+ function getRandomNum(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
   }
-  randomNum =getRandomNum() 
+  randomNum =getRandomNum(1, 20) 
   const timeOfDay = getTimeOfDay();
 
   function setBg() {
@@ -178,4 +178,22 @@ function errCity() {
 document.addEventListener('DOMContentLoaded', getWeather);
 city.addEventListener('keypress', setCity)
 
- 
+ // Цитаты
+
+const quoteChanger = document.querySelector('.change-quote')
+const quote = document.querySelector('.quote')
+const author = document.querySelector('.author')
+
+
+ async function getQuotes() {  
+    const quotes = 'js/data.json';
+    const res = await fetch(quotes);
+    const data = await res.json(); 
+    randomQuoteNum = getRandomNum(0, 3) 
+    console.log(randomQuoteNum)
+    quote.textContent = `${data[randomQuoteNum].text}`
+    author.textContent = `${data[randomQuoteNum].author}`
+  }
+
+  document.addEventListener('DOMContentLoaded', getQuotes);
+  quoteChanger.addEventListener('click', getQuotes)
