@@ -189,11 +189,37 @@ const author = document.querySelector('.author')
     const quotes = 'js/data.json';
     const res = await fetch(quotes);
     const data = await res.json(); 
-    randomQuoteNum = getRandomNum(0, 3) 
-    console.log(randomQuoteNum)
+    randomQuoteNum = getRandomNum(0, 3)
     quote.textContent = `${data[randomQuoteNum].text}`
     author.textContent = `${data[randomQuoteNum].author}`
-  }
+  }0
 
   document.addEventListener('DOMContentLoaded', getQuotes);
   quoteChanger.addEventListener('click', getQuotes)
+
+  //Аудиоплеер
+
+const playBtn = document.querySelector('.play');
+const playPrev = document.querySelector('.play-prev');
+const playNext = document.querySelector('.play-next');
+const audio = new Audio();
+let isPlay = false;
+
+function playAudio() {
+    if (!isPlay) {
+        isPlay = true; 
+        audio.src = 'https://7oom.ru/audio/naturesounds/07%20Birds%20(7oom.ru).mp3';
+        audio.currentTime = 0;
+        audio.play();
+        playBtn.classList.toggle('pause')
+    } else {
+        isPlay = false;
+        audio.pause();
+        playBtn.classList.toggle('pause')
+    }
+
+}
+
+playBtn.addEventListener('click', playAudio);
+playPrev.addEventListener('click', playAudio);
+playNext.addEventListener('click', playAudio);
