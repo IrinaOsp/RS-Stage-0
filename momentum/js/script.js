@@ -204,6 +204,8 @@ const playPrev = document.querySelector('.play-prev');
 const playNext = document.querySelector('.play-next');
 const audio = new Audio();
 let isPlay = false;
+import playList from './playList';
+console.log(playList);
 
 function playAudio() {
     if (!isPlay) {
