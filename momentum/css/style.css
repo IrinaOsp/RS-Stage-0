@@ -36,7 +36,7 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 120px;
-  margin-bottom: 28px;
+  margin-bottom: 14px; /*reduced from 28px*/
 }
 
 .play-list {
@@ -116,6 +116,32 @@ body {
 
 .play-next {
   background-image: url("../assets/svg/play-next.svg");
+}
+
+.language-weather-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.language {
+  display: flex;
+  justify-self: flex-end;
+  margin-right: 20px;
+  margin-top: 4px;
+}
+
+.switch-language {
+  background-color: transparent;
+  border: none;
+  color:#ffffffab;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.RU {
+  
 }
 
 .weather {

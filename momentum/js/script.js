@@ -1,3 +1,30 @@
+// Перевод
+
+const greetingTranslation = {
+    en:['Good morning', 'Good afternoon', 'Good evening', 'Good night'],
+    ru:['Доброе утро', 'Добрый день', 'Добрый вечер', 'Доброй ночи'],
+}
+
+const languageSwitcher = document.querySelector('.switch-language');
+function changeLanguage() {
+    if (languageSwitcher.textContent === 'EN') {
+        languageSwitcher.textContent = 'RU'
+        languageSwitcher.classList.add('RU')
+        name.placeholder = '[Введите имя]'
+        city.placeholder = '[Введите город]'
+    } else {
+        languageSwitcher.textContent = 'EN'
+        languageSwitcher.classList.remove('RU')
+        name.placeholder = '[Enter name]'
+        city.placeholder = '[Enter city]'
+    }
+    
+}
+
+languageSwitcher.addEventListener('click', changeLanguage)
+languageSwitcher.addEventListener('click', getWeather)
+
+
 //часы и календарь
 const timeField = document.querySelector('.time')
 
@@ -14,7 +41,12 @@ showTime();
 function showDate() { //показывает дату
 const date = new Date();
 const options = {weekday: 'long', month: 'long', day: 'numeric'};
-const currentDate = date.toLocaleDateString('en-En', options);
+let currentDate = '';
+if(languageSwitcher.classList.contains('RU') === false) {
+    currentDate = date.toLocaleDateString('en-En', options);
+} else {
+    currentDate = date.toLocaleDateString('ru-Ru', options);
+}
 const dateField = document.querySelector('.date')
 dateField.textContent = currentDate;
 }
@@ -40,10 +72,25 @@ function showGreeting() {
     const greetingsField = document.querySelector('.greeting')
 
     const timeOfDay = getTimeOfDay();
-    const greetingText = `Good ${timeOfDay}`;
+    let greetingText = '';
+    if(languageSwitcher.classList.contains('RU') === false) {
+        greetingText = `Good ${timeOfDay}`;
+    } else {
+        switch (timeOfDay) {
+            case 'morning': greetingText = greetingTranslation.ru[0];
+            break;
+            case 'afternoon': greetingText = greetingTranslation.ru[1];
+            break;
+            case 'evening': greetingText = greetingTranslation.ru[2];
+            break;
+            case 'night': greetingText = greetingTranslation.ru[3];
+            break;
+        }
+    }
     greetingsField.textContent = greetingText;
     }
     showGreeting()
+
 /*
 текст приветствия меняется в зависимости от времени суток (утро, день, вечер, ночь) +5
 с 6:00 до 11:59 - Good morning / Доброе утро / Добрай раніцы
@@ -51,6 +98,7 @@ function showGreeting() {
 с 18:00 до 23:59 - Good evening / Добрый вечер / Добры вечар
 с 00:00 до 5:59 - Good night / Доброй/Спокойной ночи / Дабранач
 */
+//Сохранение имени, города
 const name = document.querySelector('.name');
 
 function setLocalStorage() {
@@ -76,14 +124,14 @@ function setLocalStorage() {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
   }
-  randomNum =getRandomNum(1, 20) 
+  let randomNum = getRandomNum(1, 20) 
   const timeOfDay = getTimeOfDay();
 
   function setBg() {
-    randomNumStr = randomNum.toString();
-    bgNum = randomNumStr.padStart(2, "0"); 
+    let randomNumStr = randomNum.toString();
+    let bgNum = randomNumStr.padStart(2, "0"); 
     const img = new Image();
-    img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
+    img.src = `https://raw.githubusercontent.com/IrinaOsp/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
     img.onload = () => {      
         document.body.style.backgroundImage = `url(${img.src})`;
     }; 
@@ -105,7 +153,7 @@ function setLocalStorage() {
         randomNum --
         setBg()
     } else {
-        randomNum = 1;
+        randomNum = 20;
         setBg()
     }
   }
@@ -126,11 +174,12 @@ function setLocalStorage() {
   
   async function getWeather() {
     if (city.value === '' && localStorage.getItem('city') === '') {
-        city.value = 'Minsk'
+            city.value = 'Minsk'
     } else if (city.value === '' && localStorage.getItem('city') !== '') {
         city.value = localStorage.getItem('city')
     }
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=66a8dd4faf814112d2989ac99d776242&units=metric`;
+
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${languageSwitcher.textContent}&appid=66a8dd4faf814112d2989ac99d776242&units=metric`;
     const res = await fetch(url);
 
     if (!res.ok) {
@@ -142,8 +191,13 @@ function setLocalStorage() {
     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${Math.round(data.main.temp)}°C`;
     weatherDescription.textContent = data.weather[0].description;
-    wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-    humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
+    if (languageSwitcher.textContent !== 'RU') {
+        wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+        humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
+    } else {
+        wind.textContent = `Скорость ветра: ${Math.round(data.wind.speed)} м/с`;
+        humidity.textContent = `Влажность: ${Math.round(data.main.humidity)}%`;
+    }
 }
 
 function setCity(event) {
@@ -162,12 +216,14 @@ function setCity(event) {
             errCity();
         } 
       }, {once : true});
-    
-
   }
 
 function errCity() {
-    weatherError.textContent = `Error! Nothing to geocode for '${city.value}'!`
+    if (languageSwitcher.textContent !== 'RU') {
+        weatherError.textContent = `Error! Nothing to geocode for '${city.value}'!`
+    } else {
+        weatherError.textContent = `Ошибка! Не найден город '${city.value}'!`
+    }
     weatherIcon.className = '';
     temperature.textContent = '';
     weatherDescription.textContent = '';
@@ -186,13 +242,13 @@ const author = document.querySelector('.author')
 
 
  async function getQuotes() {  
-    const quotes = 'js/data.json';
+    const quotes = './js/data.json';
     const res = await fetch(quotes);
     const data = await res.json(); 
-    randomQuoteNum = getRandomNum(0, 3)
+    let randomQuoteNum = getRandomNum(0, 3)
     quote.textContent = `${data[randomQuoteNum].text}`
     author.textContent = `${data[randomQuoteNum].author}`
-  }0
+  }
 
   document.addEventListener('DOMContentLoaded', getQuotes);
   quoteChanger.addEventListener('click', getQuotes)
@@ -200,28 +256,86 @@ const author = document.querySelector('.author')
   //Аудиоплеер
 
 const playBtn = document.querySelector('.play');
-const playPrev = document.querySelector('.play-prev');
-const playNext = document.querySelector('.play-next');
+const playPrevBtn = document.querySelector('.play-prev');
+const playNextBtn = document.querySelector('.play-next');
+const playListContainer = document.querySelector('.play-list')
 const audio = new Audio();
 let isPlay = false;
-import playList from './playList';
-console.log(playList);
+
+import playList from './playList.js';
+let playNum = 0;
+playList.forEach(el => {
+    const li = document.createElement('li');
+    li.classList.add('play-item')
+    li.textContent = el.title;
+    playListContainer.append(li)
+  })
 
 function playAudio() {
+    console.log(isPlay)
     if (!isPlay) {
+        console.log('start play')
         isPlay = true; 
-        audio.src = 'https://7oom.ru/audio/naturesounds/07%20Birds%20(7oom.ru).mp3';
+        audio.src = playList[playNum].src;
         audio.currentTime = 0;
         audio.play();
-        playBtn.classList.toggle('pause')
+        playBtn.classList.add('pause')
     } else {
+        console.log('stop play')
         isPlay = false;
         audio.pause();
-        playBtn.classList.toggle('pause')
+        playBtn.classList.remove('pause')
     }
+}
 
+function playPrev() {
+    if (playNum >= 1) {
+        playNum--
+    } else {
+        playNum = playList.length-1;
+    }
+    console.log(playNum)
+
+    if (!isPlay) {
+        console.log('prev start play')
+        isPlay = true; 
+        audio.src = playList[playNum].src;
+        audio.currentTime = 0;
+        audio.play();
+        playBtn.classList.add('pause')
+    } else {
+        console.log('prev play')
+        audio.src = playList[playNum].src;
+        audio.currentTime = 0;
+        audio.play();
+    }
+}
+
+function playNext() {
+    if (playNum < playList.length-1) {
+        playNum++
+    } else {
+        playNum = 0
+    }
+    console.log(playNum)
+    if (!isPlay) {
+        console.log('next start play')
+        isPlay = true; 
+        audio.src = playList[playNum].src;
+        audio.currentTime = 0;
+        audio.play();
+        playBtn.classList.add('pause')
+    } else {
+        console.log('next play')
+        audio.src = playList[playNum].src;
+        audio.currentTime = 0;
+        audio.play();
+    }
 }
 
 playBtn.addEventListener('click', playAudio);
-playPrev.addEventListener('click', playAudio);
-playNext.addEventListener('click', playAudio);
+playPrevBtn.addEventListener('click', playPrev);
+playNextBtn.addEventListener('click', playNext);
+
+
+

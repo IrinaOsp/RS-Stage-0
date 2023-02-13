@@ -18,16 +18,21 @@
       </div>
       <ul class="play-list"></ul>
     </div>
-    <div class="weather">
-      <input type="text" class="city" placeholder="[Enter sity]">
-      <i class="weather-icon owf"></i>
-      <div class="weather-error"></div>
-      <div class="description-container">
-        <span class="temperature"></span>
-        <span class="weather-description"></span>
+    <div class="language-weather-container">
+      <div class="language">
+        <button class="switch-language">EN</button>
       </div>
-      <div class="wind"></div>
-      <div class="humidity"></div>
+      <div class="weather">
+        <input type="text" class="city" placeholder="[Enter city]">
+        <i class="weather-icon owf"></i>
+        <div class="weather-error"></div>
+        <div class="description-container">
+          <span class="temperature"></span>
+          <span class="weather-description"></span>
+        </div>
+        <div class="wind"></div>
+        <div class="humidity"></div>
+      </div>
     </div>
   </header>
   <main class="main">
@@ -49,6 +54,6 @@
       <div class="author"></div>
     </div>
   </footer>
-  <script src="js/script.js"></script>
+  <script type="module" src="./js/script.js"></script>
 </body>
 </html>
