@@ -23,7 +23,7 @@ function changeLanguage() {
 
 languageSwitcher.addEventListener('click', changeLanguage)
 languageSwitcher.addEventListener('click', getWeather)
-
+languageSwitcher.addEventListener('click', getQuotes)
 
 //часы и календарь
 const timeField = document.querySelector('.time')
@@ -242,10 +242,15 @@ const author = document.querySelector('.author')
 
 
  async function getQuotes() {  
-    const quotes = './js/data.json';
+    let quotes = '';
+    if (languageSwitcher.textContent !== 'RU') {
+        quotes = './js/quotesEn.json';
+    } else {
+        quotes = './js/quotesRu.json';
+    }
     const res = await fetch(quotes);
     const data = await res.json(); 
-    let randomQuoteNum = getRandomNum(0, 3)
+    let randomQuoteNum = getRandomNum(0, data.length-1)
     quote.textContent = `${data[randomQuoteNum].text}`
     author.textContent = `${data[randomQuoteNum].author}`
   }
@@ -259,6 +264,7 @@ const playBtn = document.querySelector('.play');
 const playPrevBtn = document.querySelector('.play-prev');
 const playNextBtn = document.querySelector('.play-next');
 const playListContainer = document.querySelector('.play-list')
+
 const audio = new Audio();
 let isPlay = false;
 
@@ -270,6 +276,7 @@ playList.forEach(el => {
     li.textContent = el.title;
     playListContainer.append(li)
   })
+const songNames = document.querySelectorAll('.play-item')
 
 function playAudio() {
     console.log(isPlay)
@@ -280,6 +287,7 @@ function playAudio() {
         audio.currentTime = 0;
         audio.play();
         playBtn.classList.add('pause')
+        changeActiveSong()
     } else {
         console.log('stop play')
         isPlay = false;
@@ -303,11 +311,13 @@ function playPrev() {
         audio.currentTime = 0;
         audio.play();
         playBtn.classList.add('pause')
+        changeActiveSong()
     } else {
         console.log('prev play')
         audio.src = playList[playNum].src;
         audio.currentTime = 0;
         audio.play();
+        changeActiveSong()
     }
 }
 
@@ -325,17 +335,46 @@ function playNext() {
         audio.currentTime = 0;
         audio.play();
         playBtn.classList.add('pause')
+        changeActiveSong()
     } else {
         console.log('next play')
         audio.src = playList[playNum].src;
         audio.currentTime = 0;
         audio.play();
+        changeActiveSong()
     }
+}
+
+audio.addEventListener('ended', playNext)
+
+
+function changeActiveSong() {
+    songNames.forEach(function (item) {
+        if(item.classList.contains('item-active')) {
+            item.classList.remove('item-active')
+        }
+    })
+    songNames[playNum].classList.add('item-active')
 }
 
 playBtn.addEventListener('click', playAudio);
 playPrevBtn.addEventListener('click', playPrev);
 playNextBtn.addEventListener('click', playNext);
+console.log(songNames)
 
+//Настройки
 
+const state = {
+    language: 'en',
+    photoSource: 'github',
+    blocks: ['time', 'date','greeting', 'quote', 'weather', 'audio', 'todolist']
+  }
 
+const settingsBtn = document.querySelector('.settings-button')
+const settingsBar = document.querySelector('.settings-bar')
+
+function settingsBarOpen() {
+    settingsBar.classList.toggle('settings-bar-visible')
+}
+
+settingsBtn.addEventListener('click', settingsBarOpen)
