@@ -39,6 +39,32 @@ body {
   margin-bottom: 10px; /*reduced from 28px*/
 }
 
+.volume-header{
+  display: flex;
+  position: relative;
+}
+
+#soundVolume {
+  position: absolute;
+  top: 7px;
+  left: 30px;
+  appearance: none;
+  height: 5px;
+  width: 50px;
+  border-radius: 10px;
+  opacity: .8;
+  transform: translateX(180deg);
+}
+
+#soundVolume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 10px;
+  width: 10px;
+  border: 0;
+  border-radius: 30px;
+  background: -webkit-linear-gradient(45deg,  rgb(213, 213, 213), rgb(154, 155, 155));
+}
+
 .song-title {
   /*opacity: .8;*/
 }
@@ -77,7 +103,6 @@ body {
   border: 0;
   border-radius: 30px;
   background: -webkit-linear-gradient(45deg,  rgb(213, 213, 213), rgb(154, 155, 155));
-
 }
 
 .play-list {
