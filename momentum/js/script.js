@@ -30,8 +30,8 @@ const timeField = document.querySelector('.time')
 
 function showTime() { //запускает время
     const date = new Date();
-    const currentTime = date.toLocaleTimeString();
-    timeField.textContent = currentTime;
+    const currentDayTime = date.toLocaleTimeString();
+    timeField.textContent = currentDayTime;
     showDate();
     showGreeting()
     setTimeout(showTime, 1000);
@@ -264,6 +264,7 @@ const playBtn = document.querySelector('.play');
 const playPrevBtn = document.querySelector('.play-prev');
 const playNextBtn = document.querySelector('.play-next');
 const playListContainer = document.querySelector('.play-list')
+const songTitle = document.querySelector('.song-title')
 
 const audio = new Audio();
 let isPlay = false;
@@ -276,7 +277,8 @@ playList.forEach(el => {
     li.textContent = el.title;
     playListContainer.append(li)
   })
-const songNames = document.querySelectorAll('.play-item')
+const songTitles = document.querySelectorAll('.play-item')
+songTitle.innerHTML = songTitles[playNum].innerHTML
 
 function playAudio() {
     console.log(isPlay)
@@ -284,7 +286,7 @@ function playAudio() {
         console.log('start play')
         isPlay = true; 
         audio.src = playList[playNum].src;
-        audio.currentTime = 0;
+        changeProgressBar() //проверить
         audio.play();
         playBtn.classList.add('pause')
         changeActiveSong()
@@ -308,14 +310,12 @@ function playPrev() {
         console.log('prev start play')
         isPlay = true; 
         audio.src = playList[playNum].src;
-        audio.currentTime = 0;
         audio.play();
         playBtn.classList.add('pause')
         changeActiveSong()
     } else {
         console.log('prev play')
         audio.src = playList[playNum].src;
-        audio.currentTime = 0;
         audio.play();
         changeActiveSong()
     }
@@ -327,21 +327,19 @@ function playNext() {
     } else {
         playNum = 0
     }
-    console.log(playNum)
+
     if (!isPlay) {
         console.log('next start play')
         isPlay = true; 
         audio.src = playList[playNum].src;
-        audio.currentTime = 0;
         audio.play();
         playBtn.classList.add('pause')
         changeActiveSong()
     } else {
         console.log('next play')
         audio.src = playList[playNum].src;
-        audio.currentTime = 0;
         audio.play();
-        changeActiveSong()
+        changeActiveSong()   
     }
 }
 
@@ -349,18 +347,54 @@ audio.addEventListener('ended', playNext)
 
 
 function changeActiveSong() {
-    songNames.forEach(function (item) {
+    songTitles.forEach(function (item) {
         if(item.classList.contains('item-active')) {
             item.classList.remove('item-active')
         }
     })
-    songNames[playNum].classList.add('item-active')
+    songTitles[playNum].classList.add('item-active')
+    songTitle.innerHTML = songTitles[playNum].innerHTML
 }
 
 playBtn.addEventListener('click', playAudio);
 playPrevBtn.addEventListener('click', playPrev);
 playNextBtn.addEventListener('click', playNext);
-console.log(songNames)
+
+//Прогресс бар продвинутого плеера
+const progressBar = document.getElementById('progress-bar')
+
+// задает аудио при загрузке
+audio.src = playList[playNum].src;
+
+function updateProgressValue() {
+    progressBar.max = audio.duration;
+    progressBar.value = audio.currentTime;
+    document.querySelector('.currentTime').innerHTML = (formatTime(Math.floor(audio.currentTime)));
+    if (document.querySelector('.durationTime').innerHTML === "NaN:NaN") {
+        document.querySelector('.durationTime').innerHTML = "0:00";
+    } else {
+        document.querySelector('.durationTime').innerHTML = (formatTime(Math.floor(audio.duration)));
+    }
+};
+
+function formatTime(seconds) {
+    let min = Math.floor((seconds / 60));
+    let sec = Math.floor(seconds - (min * 60));
+    if (sec < 10){ 
+        sec  = `0${sec}`;
+    };
+    return `${min}:${sec}`;
+};
+
+// run updateProgressValue function every 1/2 second to show change in progressBar and song.currentTime on the DOM
+setInterval(updateProgressValue, 500);
+
+// function where progressBar.value is changed when slider thumb is dragged without auto-playing audio
+function changeProgressBar() {
+    audio.currentTime = progressBar.value;
+};
+progressBar.addEventListener("change", changeProgressBar);
+
 
 //Настройки
 
