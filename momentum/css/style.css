@@ -42,6 +42,26 @@ body {
 .volume-header{
   display: flex;
   position: relative;
+  margin-left: 0px;
+}
+
+.mute {
+  cursor: pointer;
+  opacity: .6;
+}
+.mute:before, .mute:after {
+  content: ""; 
+  position: absolute; 
+  width: 26px; 
+  height: 1px; 
+  background: gray;
+}
+.mute:before {
+  transform: translate(-5px, 9px) rotate(45deg); 
+}
+
+.mute:after {
+  transform: translate(-25px, 9px) rotate(-45deg);
 }
 
 #soundVolume {
@@ -71,20 +91,22 @@ body {
 
 .songTime-wrapper {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
+  align-items: center;
   opacity: .8;
 }
 
 .currentTime {
-  width: 50px;
+  width: 30px;
   align-items: self-end;
   cursor: pointer;
   font-size: 13px;
-  text-align: center;
+  text-align: left;
 }
 
 .durationTime {
-  width: 50px;
+  width: 30px;
   cursor: pointer;
   font-size: 13px;
   text-align: center;

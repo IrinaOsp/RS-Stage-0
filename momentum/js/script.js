@@ -286,7 +286,7 @@ function playAudio() {
         console.log('start play')
         isPlay = true; 
         audio.src = playList[playNum].src;
-        changeProgressBar() //проверить
+        changeProgressBar()
         audio.play();
         playBtn.classList.add('pause')
         changeActiveSong()
@@ -395,6 +395,27 @@ function changeProgressBar() {
 };
 progressBar.addEventListener("change", changeProgressBar);
 
+//Звук
+const volumeSlider = document.querySelector('#soundVolume');
+const muteVolume = document.querySelector('.muteButton') 
+
+function muteSound() {
+    if (audio.volume !== 0) {
+        audio.volume = 0;
+    } else {
+        changeVolume()
+    }
+    
+    muteVolume.classList.toggle('mute')
+}
+
+muteVolume.addEventListener("click", muteSound);
+
+
+function changeVolume() {
+    audio.volume = volumeSlider.value;
+};
+volumeSlider.addEventListener("change", changeVolume);
 
 //Настройки
 
