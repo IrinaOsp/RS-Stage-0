@@ -69,7 +69,7 @@ function getTimeOfDay() {
 }
 
 function showGreeting() {
-    const greetingsField = document.querySelector('.greeting')
+    const greetingsField = document.querySelector('.greeting-text')
 
     const timeOfDay = getTimeOfDay();
     let greetingText = '';
@@ -237,7 +237,7 @@ city.addEventListener('keypress', setCity)
  // Цитаты
 
 const quoteChanger = document.querySelector('.change-quote')
-const quote = document.querySelector('.quote')
+const quote = document.querySelector('.quote-text')
 const author = document.querySelector('.author')
 
 
@@ -422,14 +422,76 @@ volumeSlider.addEventListener("change", changeVolume);
 const state = {
     language: 'en',
     photoSource: 'github',
-    blocks: ['time', 'date','greeting', 'quote', 'weather', 'audio', 'todolist']
+    blocks: ['time', 'date','greeting', 'quote', 'weather', 'player', 'todolist']
   }
 
 const settingsBtn = document.querySelector('.settings-button')
 const settingsBar = document.querySelector('.settings-bar')
+const settingsBoard = document.querySelector('.settings-board')
 
 function settingsBarOpen() {
     settingsBar.classList.toggle('settings-bar-visible')
 }
-
 settingsBtn.addEventListener('click', settingsBarOpen)
+
+const visibilityItems = document.createElement('ul');
+function createGeneralHeading() {
+    const h3 = document.createElement('h3');
+    h3.classList.add('settings-board-h3')
+    h3.textContent = 'General';
+
+    const h4 = document.createElement('h4');
+    h4.classList.add('settings-board-h4')
+    h4.textContent = 'SHOW';
+
+    visibilityItems.classList.add('visibility-items')
+    settingsBoard.append(h3)
+    settingsBoard.append(h4)
+    settingsBoard.append(visibilityItems)
+}
+createGeneralHeading()
+
+state.blocks.forEach(el => {
+    const li = document.createElement('li');
+    li.classList.add('display-item')
+
+    const input = document.createElement('input')
+    input.type = 'checkbox';
+
+    const spanText = document.createElement('span')
+    spanText.textContent = el;
+
+    const spanSlider = document.createElement('span')
+    spanSlider.classList.add('toggle-slider')
+
+    const svg = document.createElement('svg')
+    svg.classList.add('toggle-switch')
+    svg.setAttribute("viewBox", "0 0 100 100"); 
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg"); 
+
+    const circle = document.createElement('circle')
+    circle.setAttribute("cx", "50"); 
+    circle.setAttribute("cy", "50"); 
+    circle.setAttribute("r", "50");
+    
+
+    visibilityItems.appendChild(li)
+    li.appendChild(input)
+    li.appendChild(spanText)
+    li.appendChild(spanSlider)
+    spanSlider.appendChild(svg)
+    svg.appendChild(circle)
+
+  })
+
+const displayItems = document.querySelectorAll('.display-item')
+
+displayItems.forEach(function (item) {
+
+    item.addEventListener('click', function() {
+        const itemText = item.childNodes[1].innerHTML;
+        document.querySelector(`.${itemText}`).classList.toggle('hide')
+    })
+})
+
+//el.addEventListener("click", function(){modifyText("четыре")}, false);
