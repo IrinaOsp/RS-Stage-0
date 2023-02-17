@@ -428,7 +428,7 @@ const state = {
 const settingsBtn = document.querySelector('.settings-button')
 const settingsBar = document.querySelector('.settings-bar')
 const settingsBoard = document.querySelector('.settings-board')
-
+    //Вызов настроек General
 function settingsBarOpen() {
     settingsBar.classList.toggle('settings-bar-visible')
 }
@@ -464,34 +464,27 @@ state.blocks.forEach(el => {
     const spanSlider = document.createElement('span')
     spanSlider.classList.add('toggle-slider')
 
-    const svg = document.createElement('svg')
-    svg.classList.add('toggle-switch')
-    svg.setAttribute("viewBox", "0 0 100 100"); 
-    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg"); 
-
-    const circle = document.createElement('circle')
-    circle.setAttribute("cx", "50"); 
-    circle.setAttribute("cy", "50"); 
-    circle.setAttribute("r", "50");
+    const spanCircle = document.createElement('span')
+    spanCircle.classList.add('toggle-circle')
     
-
     visibilityItems.appendChild(li)
     li.appendChild(input)
     li.appendChild(spanText)
     li.appendChild(spanSlider)
-    spanSlider.appendChild(svg)
-    svg.appendChild(circle)
-
+    spanSlider.appendChild(spanCircle)
   })
-
+  //Настройка видимости блоков
 const displayItems = document.querySelectorAll('.display-item')
 
 displayItems.forEach(function (item) {
-
     item.addEventListener('click', function() {
         const itemText = item.childNodes[1].innerHTML;
         document.querySelector(`.${itemText}`).classList.toggle('hide')
+        const slider = item.childNodes[2].classList.toggle('disabled');
     })
 })
+    //Настройки языка
+
+
 
 //el.addEventListener("click", function(){modifyText("четыре")}, false);

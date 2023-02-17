@@ -491,35 +491,36 @@ text-align: left;
 .toggle-slider {
   height: 20px;
   width: 33px;
-  background: #b0b0b0;
   border-radius: 30px;
   float: right;
-}
-
-.display-item .enabled {
   background: #7edc74;
-  transform: translateX(14px) scale(1.25);
+  /*transform: translateX(14px);*/
 }
 
-.toggle-slider, .toggle-switch {
+.display-item .disabled {
+  background: #b0b0b0;
+}
+
+.toggle-slider, .toggle-circle {
   position: relative;
 }
 
-.toggle-switch {
-  height: 12px;
-  width: 12px;
-  top: 4px;
-  left: 3px;
+.toggle-circle {
+  background-color: #fff;
+  margin-top: 1.5px;
+  margin-left: 14px;
+  height: 18px;
+  width: 18px;
+  border-radius: 30px;
   display: inline-block;
-  transform-origin: 50% 50%;
-  transition: transform 0.15s ease;
-  vertical-align: top;
-}
+  }
 
-.toggle-switch circle {
-  fill: #fff;
-display: inline-block;
-}
+  .disabled .toggle-circle {
+    margin-left: 0px;
+    transform-origin: 50% 50%;
+    transition: transform 0.15s ease;
+  }
+
 
 .quote {
   width: 95%;
