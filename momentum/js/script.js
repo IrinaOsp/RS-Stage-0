@@ -680,8 +680,6 @@ function showLangSettings() {
  langBtn.style.display = 'block';
 }
 
-
-
     //Настройки источника фото
 
 const settingsPhotoSource = document.getElementById('photo-source')
@@ -745,5 +743,3 @@ photoFlickr.addEventListener('click', function() {
         h4.innerHTML = ''
         visibilityItems.style.display = 'none';
     }
-
-
