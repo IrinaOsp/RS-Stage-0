@@ -50,9 +50,9 @@ settingsBtn.addEventListener('click', function(){
     photoFlickr.classList.add('btnFlickr', 'photo-button', 'disabledBtn')
     photoFlickr.innerHTML='Flickr API'
 
-    const inputTagFlickr = document.createElement('input')
-    inputTagFlickr.classList.add('input-tags', 'input-Flickr')
-    inputTagFlickr.placeholder = "[Enter tags for photos]"
+    const inputTagsFlickr = document.createElement('input')
+    inputTagsFlickr.classList.add('input-tags', 'input-Flickr')
+    inputTagsFlickr.placeholder = "[Enter tags for photos]"
     
     function createGeneralHeading() {
         
@@ -68,13 +68,13 @@ settingsBtn.addEventListener('click', function(){
         settingsBoard.append(photoUnsplash)
         settingsBoard.append(inputTagsUnsplash)
         settingsBoard.append(photoFlickr)
-        settingsBoard.append(inputTagFlickr)
+        settingsBoard.append(inputTagsFlickr)
         langBtn.style.display = 'none';
         photoGit.style.display = 'none';
         photoUnsplash.style.display = 'none';
         photoFlickr.style.display = 'none';
         inputTagsUnsplash.style.display = 'none';
-        inputTagFlickr.style.display = 'none';
+        inputTagsFlickr.style.display = 'none';
     }
     createGeneralHeading()
     let spanText = '';
@@ -217,12 +217,14 @@ function showGreeting() {
 с 18:00 до 23:59 - Good evening / Добрый вечер / Добры вечар
 с 00:00 до 5:59 - Good night / Доброй/Спокойной ночи / Дабранач
 */
-//Сохранение имени, города
+//Сохранение имени, города, тегов
 const name = document.querySelector('.name');
 
 function setLocalStorage() {
     localStorage.setItem('name', name.value);
     localStorage.setItem('city', city.value);
+    localStorage.setItem('Unsplash_tag', inputTagsUnsplash.value);
+    localStorage.setItem('Flickr_tag', inputTagsFlickr.value);
   }
   window.addEventListener('beforeunload', setLocalStorage)
 
@@ -232,6 +234,12 @@ function setLocalStorage() {
     }
     if(localStorage.getItem('city')) {
         city.value = localStorage.getItem('city');
+    }
+    if(localStorage.getItem('Unsplash_tag')) {
+        inputTagsUnsplash.value = localStorage.getItem('Unsplash_tag');
+    }
+    if(localStorage.getItem('Flickr_tag')) {
+        inputTagsFlickr.value = localStorage.getItem('Flickr_tag');
     }
   }
   window.addEventListener('load', getLocalStorage)
@@ -255,7 +263,44 @@ function setLocalStorage() {
   }
 
   //фон из Unsplash
-  console.log(inputTagsUnsplash.value)
+  function getTagsUnspl(event) {
+    console.log('getTags');
+    if (event.keyCode === 13 && inputTagsUnsplash.value !== '') {
+        console.log('getTags if');
+        async function setBgWithTagsUnsplash() {
+            const url = `https://api.unsplash.com/photos/random?query=${timeOfDay}%2C+${inputTagsUnsplash.value}&client_id=e2077ad31a806c894c460aec8f81bc2af4d09c4f8104ae3177bb809faf0eac17`;
+            console.log(url);
+            const res = await fetch(url);
+            const data = await res.json();
+            img.src = data.urls.regular        
+            img.onload = () => {      
+                document.body.style.backgroundImage = `url(${img.src})`;
+            }; 
+        } setBgWithTagsUnsplash()
+    }
+  }
+        function getTagsFlckr(event) {
+     if (event.keyCode === 13 && inputTagsFlickr.value !== '') {
+        console.log('getTags if flckr');
+        async function setBgWithTagsFlickr() {
+            console.log(inputTagsFlickr.value);
+            randomNum = getRandomNum(0, 99) 
+            let randomNumStr = randomNum.toString();
+            const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=fd92c1a76667aac1f64a7051e2c73a7a&tags=${timeOfDay}%2C+${inputTagsFlickr.value}&extras=url_l&format=json&nojsoncallback=1`
+            console.log(url);
+            const res = await fetch(url);
+            const data = await res.json();
+            img.src = data.photos.photo[randomNumStr].url_l       
+            img.onload = () => {      
+                document.body.style.backgroundImage = `url(${img.src})`;
+            }; 
+        } setBgWithTagsFlickr()
+    } 
+}
+inputTagsUnsplash.addEventListener('keypress', getTagsUnspl)
+inputTagsFlickr.addEventListener('keypress', getTagsFlckr)
+
+
 
 async function getLinkToImageFromUnsplash() {
     const url = `https://api.unsplash.com/photos/random?query=${timeOfDay}&client_id=e2077ad31a806c894c460aec8f81bc2af4d09c4f8104ae3177bb809faf0eac17`;
@@ -672,7 +717,7 @@ photoUnsplash.addEventListener('click', function() {
         photoGit.classList.add('disabledBtn')
         photoFlickr.classList.add('disabledBtn')
         inputTagsUnsplash.style.display = 'block';
-        inputTagFlickr.style.display = 'none';
+        inputTagsFlickr.style.display = 'none';
         setBg()
     }
 })
@@ -685,7 +730,7 @@ photoFlickr.addEventListener('click', function() {
         photoGit.classList.add('disabledBtn')
         photoUnsplash.classList.add('disabledBtn')
         inputTagsUnsplash.style.display = 'none';
-        inputTagFlickr.style.display = 'block';
+        inputTagsFlickr.style.display = 'block';
         setBg()
     }
 })
