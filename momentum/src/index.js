@@ -474,9 +474,9 @@ const author = document.querySelector('.author')
  async function getQuotes() {  
     let quotes = '';
     if (languageSwitcher.textContent !== 'Russian') {
-        quotes = './js/quotesEn.json';
+        quotes = './quotesEn.json';
     } else {
-        quotes = './js/quotesRu.json';
+        quotes = './quotesRu.json';
     }
     const res = await fetch(quotes);
     const data = await res.json(); 
@@ -750,6 +750,11 @@ photoFlickr.addEventListener('click', function() {
         h3.innerHTML = 'ToDo'
         h4.innerHTML = ''
         visibilityItems.style.display = 'none';
+        inputTagsUnsplash.style.display = 'none';
+        inputTagsFlickr.style.display = 'none';
+        photoGit.style.display = 'none';
+        photoUnsplash.style.display = 'none';
+        photoFlickr.style.display = 'none';
     }
 
 
