@@ -31,15 +31,18 @@ settingsBtn.addEventListener('click', function(){
     h4.classList.add('settings-board-h4')
     
     const langBtn = document.createElement('button')
+    langBtn.setAttribute('type', 'button');
     langBtn.classList.add('switch-language')
     langBtn.innerHTML='English'
 
     const photoGit = document.createElement('button')
     photoGit.classList.add('btnGit', 'photo-button')
+    photoGit.setAttribute('type', 'button');
     photoGit.innerHTML='GitHub'
     
     const photoUnsplash = document.createElement('button')
     photoUnsplash.classList.add('btnUnsplash', 'photo-button', 'disabledBtn')
+    photoUnsplash.setAttribute('type', 'button');
     photoUnsplash.innerHTML='Unsplash API'
 
     const inputTagsUnsplash = document.createElement('input')
@@ -48,6 +51,8 @@ settingsBtn.addEventListener('click', function(){
     
     const photoFlickr = document.createElement('button')
     photoFlickr.classList.add('btnFlickr', 'photo-button', 'disabledBtn')
+    photoFlickr.setAttribute('type', 'button');
+
     photoFlickr.innerHTML='Flickr API'
 
     const inputTagsFlickr = document.createElement('input')
@@ -286,7 +291,8 @@ function setLocalStorage() {
             console.log(inputTagsFlickr.value);
             randomNum = getRandomNum(0, 99) 
             let randomNumStr = randomNum.toString();
-            const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=fd92c1a76667aac1f64a7051e2c73a7a&tags=${timeOfDay}%2C+${inputTagsFlickr.value}&extras=url_l&format=json&nojsoncallback=1`
+            let tags = timeOfDay;
+            const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=fd92c1a76667aac1f64a7051e2c73a7a&tags=${tags}&extras=url_l&format=json&nojsoncallback=1`
             console.log(url);
             const res = await fetch(url);
             const data = await res.json();
