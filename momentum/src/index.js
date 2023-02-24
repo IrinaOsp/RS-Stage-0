@@ -59,11 +59,35 @@ settingsBtn.addEventListener('click', function(){
     inputTagsFlickr.classList.add('input-tags', 'input-Flickr')
     inputTagsFlickr.placeholder = "[Enter tags for photos]"
     
-    function createGeneralHeading() {
-        
-        h3.textContent = 'General';
-        h4.textContent = 'SHOW';
+    let spanText = '';
+    let i=0;
+    state.blocks.forEach(el => {
+        const li = document.createElement('li');
+        li.classList.add('display-item')
     
+        const input = document.createElement('input')
+        input.classList.add('disp-input', `disp-input-${i}`)
+        input.type = 'checkbox';
+    
+        spanText = document.createElement('span')
+        spanText.classList.add(`span-${i}`)
+        i++;
+        spanText.textContent = el;
+    
+        const spanSlider = document.createElement('span')
+        spanSlider.classList.add('toggle-slider')
+    
+        const spanCircle = document.createElement('span')
+        spanCircle.classList.add('toggle-circle')
+        
+        visibilityItems.appendChild(li)
+        li.appendChild(input)
+        li.appendChild(spanText)
+        li.appendChild(spanSlider)
+        spanSlider.appendChild(spanCircle)
+      })
+
+    function createGeneralHeading() {
         visibilityItems.classList.add('visibility-items')
         settingsBoard.append(h3)
         settingsBoard.append(h4)
@@ -80,33 +104,64 @@ settingsBtn.addEventListener('click', function(){
         photoFlickr.style.display = 'none';
         inputTagsUnsplash.style.display = 'none';
         inputTagsFlickr.style.display = 'none';
+
+        if(langBtn.classList.contains('RU')) {
+            h3.textContent = 'Основные';
+            h4.textContent = 'ПОКАЗАТЬ';
+            document.querySelector('.span-0').textContent = 'Время'
+            document.querySelector('.span-1').textContent = 'Дата'
+            document.querySelector('.span-2').textContent = 'Приветствие'
+            document.querySelector('.span-3').textContent = 'Цитата'
+            document.querySelector('.span-4').textContent = 'Погода'
+            document.querySelector('.span-5').textContent = 'Плеер'
+            document.querySelector('.span-6').textContent = 'Список дел'
+        } else {
+            h3.textContent = 'General';
+            h4.textContent = 'SHOW';
+            document.querySelector('.span-0').textContent = 'Time'
+            document.querySelector('.span-1').textContent = 'Date'
+            document.querySelector('.span-2').textContent = 'Greeting'
+            document.querySelector('.span-3').textContent = 'Quote'
+            document.querySelector('.span-4').textContent = 'Weather'
+            document.querySelector('.span-5').textContent = 'Player'
+            document.querySelector('.span-6').textContent = 'Todo list'
+        }
     }
     createGeneralHeading()
-    let spanText = '';
-    state.blocks.forEach(el => {
-        const li = document.createElement('li');
-        li.classList.add('display-item')
-    
-        const input = document.createElement('input')
-        input.type = 'checkbox';
-    
-        spanText = document.createElement('span')
-        spanText.textContent = el;
-    
-        const spanSlider = document.createElement('span')
-        spanSlider.classList.add('toggle-slider')
-    
-        const spanCircle = document.createElement('span')
-        spanCircle.classList.add('toggle-circle')
-        
-        visibilityItems.appendChild(li)
-        li.appendChild(input)
-        li.appendChild(spanText)
-        li.appendChild(spanSlider)
-        spanSlider.appendChild(spanCircle)
-      })
+ 
 
 // Перевод
+/*
+import i18next from './i18next';
+function setLanguage(language) {
+    i18next.init({
+        lng: 'en',
+        debug: true,
+        resources: require(`json!./${language}.json`)
+      });
+      this.props.actions.changeLanguage(i18next);
+}
+
+import i18next from './i18next';
+// Инициализация, выполняется ровно один раз в асинхронной функции, запускающей приложение
+class Translator {
+    constructor() {
+        this._lang = this.getLanguage();
+
+    }
+  }
+  export default Translator;
+
+
+// initialized and ready to go!
+// i18next is already initialized, because the translation resources where passed via init function
+document.getElementById('general').innerHTML = i18next.t('G');
+document.getElementById('language').innerHTML = i18next.t('L');
+document.getElementById('photo-source').innerHTML = i18next.t('PS');
+document.getElementById('todo').innerHTML = i18next.t('TD');
+*/
+
+
 
 const greetingTranslation = {
     en:['Good morning', 'Good afternoon', 'Good evening', 'Good night'],
@@ -116,23 +171,26 @@ const greetingTranslation = {
 const languageSwitcher = document.querySelector('.switch-language');
 function changeLanguage() {
     if (languageSwitcher.textContent === 'English') {
-        languageSwitcher.textContent = 'Russian'
+        languageSwitcher.textContent = 'Русский'
         languageSwitcher.classList.add('RU')
         name.placeholder = '[Введите имя]'
         city.placeholder = '[Введите город]'
-        state['blocks'] = ['время', 'дата','приветствие', 'цитата', 'погода', 'плеер', 'список дел']
-        state.blocks.forEach(el => {
-            spanText.textContent = el;
-        })
+        settingsGeneral.textContent = 'Основные настройки'
+        settingsLanguage.textContent = 'Язык'
+        settingsPhotoSource.textContent = 'Источник фото'
+        settingsToDo.textContent = 'Список дел'
+        h3.innerHTML = 'Язык'
+
     } else {
         languageSwitcher.textContent = 'English'
         languageSwitcher.classList.remove('RU')
         name.placeholder = '[Enter name]'
         city.placeholder = '[Enter city]'
-        state['blocks'] = ['time', 'date','greeting', 'quote', 'weather', 'player', 'todolist']
-        state.blocks.forEach(el => {
-            spanText.textContent = el;
-        })
+        settingsGeneral.textContent = 'General'
+        settingsLanguage.textContent = 'Language'
+        settingsPhotoSource.textContent = 'Photo Source'
+        settingsToDo.textContent = 'ToDo'
+        h3.innerHTML = 'Language'
     }
     
 }
@@ -224,12 +282,21 @@ function showGreeting() {
 */
 //Сохранение имени, города, тегов
 const name = document.querySelector('.name');
+const arrSlider = document.querySelectorAll('.toggle-slider')
 
 function setLocalStorage() {
     localStorage.setItem('name', name.value);
     localStorage.setItem('city', city.value);
     localStorage.setItem('Unsplash_tag', inputTagsUnsplash.value);
     localStorage.setItem('Flickr_tag', inputTagsFlickr.value);
+
+    arrSlider.forEach((item, index) => {
+        if(item.classList.contains('disabled')) {
+              localStorage.setItem(`Disp block ${index}`, 'disabled');
+            } else {
+              localStorage.removeItem(`Disp block ${index}`);
+        }
+    })
   }
   window.addEventListener('beforeunload', setLocalStorage)
 
@@ -246,8 +313,35 @@ function setLocalStorage() {
     if(localStorage.getItem('Flickr_tag')) {
         inputTagsFlickr.value = localStorage.getItem('Flickr_tag');
     }
+    arrSlider.forEach((item, index) => {
+        if(localStorage.getItem(`Disp block ${index}`)) {
+          item.classList.toggle('disabled');
+          const itemText = state.blocks[index];
+          document.querySelector(`.${itemText}`).style.display = 'none';
+          //document.querySelector(`.${itemText}`).classList.toggle('hide');
+        }
+      })
   }
   window.addEventListener('load', getLocalStorage)
+
+
+/*
+
+const displayItems = document.querySelectorAll('.display-item')
+
+displayItems.forEach(function (item) {
+    item.addEventListener('click', function() {
+        const itemNum = item.childNodes[1].classList.value.slice(-1);
+        const itemText = state.blocks[itemNum];
+
+        document.querySelector(`.${itemText}`).classList.toggle('hide')
+        const slider = item.childNodes[2].classList.toggle('disabled');
+
+        console.log(document.querySelector('.disp-input-1').checked) 
+    })
+})
+
+*/
 
   //Фоновое изображение
 
@@ -400,9 +494,16 @@ async function getLinkToImageFromFlickr() {
   
   async function getWeather() {
     if (city.value === '' && localStorage.getItem('city') === '') {
+        if (!languageSwitcher.classList.contains('RU')) {
             city.value = 'Minsk'
+        } else {
+            city.value = 'Минск'
+        }
+        
     } else if (city.value === '' && localStorage.getItem('city') !== '') {
         city.value = localStorage.getItem('city')
+    } else if (city.value === 'Minsk' && localStorage.getItem('city') !== '' && languageSwitcher.classList.contains('RU')) {
+        city.value = 'Минск'
     }
 
     let whichLang = ''
@@ -421,7 +522,7 @@ async function getLinkToImageFromFlickr() {
     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${Math.round(data.main.temp)}°C`;
     weatherDescription.textContent = data.weather[0].description;
-    if (languageSwitcher.textContent !== 'Russian') {
+    if (!languageSwitcher.classList.contains('RU')) {
         wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
         humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
     } else {
@@ -449,7 +550,7 @@ function setCity(event) {
   }
 
 function errCity() {
-    if (languageSwitcher.textContent !== 'RU') {
+    if (!languageSwitcher.classList.contains('RU')) {
         weatherError.textContent = `Error! Nothing to geocode for '${city.value}'!`
     } else {
         weatherError.textContent = `Ошибка! Не найден город '${city.value}'!`
@@ -473,7 +574,7 @@ const author = document.querySelector('.author')
 
  async function getQuotes() {  
     let quotes = '';
-    if (languageSwitcher.textContent !== 'Russian') {
+    if (!languageSwitcher.classList.contains('RU')) {
         quotes = './quotesEn.json';
     } else {
         quotes = './quotesRu.json';
@@ -666,9 +767,13 @@ const displayItems = document.querySelectorAll('.display-item')
 
 displayItems.forEach(function (item) {
     item.addEventListener('click', function() {
-        const itemText = item.childNodes[1].innerHTML;
+        const itemNum = item.childNodes[1].classList.value.slice(-1);
+        const itemText = state.blocks[itemNum];
+
         document.querySelector(`.${itemText}`).classList.toggle('hide')
         const slider = item.childNodes[2].classList.toggle('disabled');
+
+        console.log(document.querySelector('.disp-input-1').checked) 
     })
 })
     //Настройки языка
@@ -677,7 +782,11 @@ const settingsLanguage = document.getElementById('language')
 settingsLanguage.addEventListener('click', showLangSettings)
 
 function showLangSettings() {
- h3.innerHTML = 'Language'
+    if(langBtn.classList.contains('RU')) {
+        h3.innerHTML = 'Язык'
+    } else {
+        h3.innerHTML = 'Language'
+    }
  h4.innerHTML = ''
  visibilityItems.style.display = 'none';
  photoGit.style.display = 'none';
@@ -694,7 +803,11 @@ const settingsPhotoSource = document.getElementById('photo-source')
 settingsPhotoSource.addEventListener('click', showPhotoSource)
     
 function showPhotoSource() {
-    h3.innerHTML = 'Photo Source'
+    if(langBtn.classList.contains('RU')) {
+        h3.innerHTML = 'Источник фото'
+    } else {
+        h3.innerHTML = 'Photo Source'
+    }
     h4.innerHTML = ''
     visibilityItems.style.display = 'none';
     langBtn.style.display = 'none';
@@ -747,7 +860,11 @@ photoFlickr.addEventListener('click', function() {
     settingsToDo.addEventListener('click', showToDo)
         
     function showToDo() {
-        h3.innerHTML = 'ToDo'
+        if(langBtn.classList.contains('RU')) {
+            h3.innerHTML = 'Список дел'
+        } else {
+            h3.innerHTML = 'ToDo'
+        }
         h4.innerHTML = ''
         visibilityItems.style.display = 'none';
         inputTagsUnsplash.style.display = 'none';
