@@ -88,6 +88,8 @@ settingsBtn.addEventListener('click', function(){
       })
 
     function createGeneralHeading() {
+        console.log('createGeneralHeading')
+
         visibilityItems.classList.add('visibility-items')
         settingsBoard.append(h3)
         settingsBoard.append(h4)
@@ -104,8 +106,10 @@ settingsBtn.addEventListener('click', function(){
         photoFlickr.style.display = 'none';
         inputTagsUnsplash.style.display = 'none';
         inputTagsFlickr.style.display = 'none';
-
+console.log(langBtn.classList.contains('RU'))
         if(langBtn.classList.contains('RU')) {
+            console.log('render ru')
+
             h3.textContent = 'Основные';
             h4.textContent = 'ПОКАЗАТЬ';
             document.querySelector('.span-0').textContent = 'Время'
@@ -116,6 +120,7 @@ settingsBtn.addEventListener('click', function(){
             document.querySelector('.span-5').textContent = 'Плеер'
             document.querySelector('.span-6').textContent = 'Список дел'
         } else {
+            console.log('render en')
             h3.textContent = 'General';
             h4.textContent = 'SHOW';
             document.querySelector('.span-0').textContent = 'Time'
@@ -130,38 +135,7 @@ settingsBtn.addEventListener('click', function(){
     createGeneralHeading()
  
 
-// Перевод
-/*
-import i18next from './i18next';
-function setLanguage(language) {
-    i18next.init({
-        lng: 'en',
-        debug: true,
-        resources: require(`json!./${language}.json`)
-      });
-      this.props.actions.changeLanguage(i18next);
-}
-
-import i18next from './i18next';
-// Инициализация, выполняется ровно один раз в асинхронной функции, запускающей приложение
-class Translator {
-    constructor() {
-        this._lang = this.getLanguage();
-
-    }
-  }
-  export default Translator;
-
-
-// initialized and ready to go!
-// i18next is already initialized, because the translation resources where passed via init function
-document.getElementById('general').innerHTML = i18next.t('G');
-document.getElementById('language').innerHTML = i18next.t('L');
-document.getElementById('photo-source').innerHTML = i18next.t('PS');
-document.getElementById('todo').innerHTML = i18next.t('TD');
-*/
-
-
+// Translation
 
 const greetingTranslation = {
     en:['Good morning', 'Good afternoon', 'Good evening', 'Good night'],
@@ -170,7 +144,7 @@ const greetingTranslation = {
 
 const languageSwitcher = document.querySelector('.switch-language');
 function changeLanguage() {
-    if (languageSwitcher.textContent === 'English') {
+    if (!languageSwitcher.classList.contains('RU')) {
         languageSwitcher.textContent = 'Русский'
         languageSwitcher.classList.add('RU')
         name.placeholder = '[Введите имя]'
@@ -180,6 +154,8 @@ function changeLanguage() {
         settingsPhotoSource.textContent = 'Источник фото'
         settingsToDo.textContent = 'Список дел'
         h3.innerHTML = 'Язык'
+        getWeather()
+        getQuotes()
 
     } else {
         languageSwitcher.textContent = 'English'
@@ -191,13 +167,14 @@ function changeLanguage() {
         settingsPhotoSource.textContent = 'Photo Source'
         settingsToDo.textContent = 'ToDo'
         h3.innerHTML = 'Language'
+        getWeather()
+        getQuotes()
     }
     
 }
 
 languageSwitcher.addEventListener('click', changeLanguage)
-languageSwitcher.addEventListener('click', getWeather)
-languageSwitcher.addEventListener('click', getQuotes)
+
 
 
 
@@ -289,7 +266,12 @@ function setLocalStorage() {
     localStorage.setItem('city', city.value);
     localStorage.setItem('Unsplash_tag', inputTagsUnsplash.value);
     localStorage.setItem('Flickr_tag', inputTagsFlickr.value);
-
+    if (languageSwitcher.classList.contains('RU')) {
+        localStorage.setItem('Language', 'RU');
+    } else {
+        localStorage.setItem('Language', 'EN');
+    }
+    
     arrSlider.forEach((item, index) => {
         if(item.classList.contains('disabled')) {
               localStorage.setItem(`Disp block ${index}`, 'disabled');
@@ -313,35 +295,24 @@ function setLocalStorage() {
     if(localStorage.getItem('Flickr_tag')) {
         inputTagsFlickr.value = localStorage.getItem('Flickr_tag');
     }
+    if (localStorage.getItem('Language')) {
+        if (localStorage.getItem('Language') === 'RU') {
+            changeLanguage()
+            createGeneralHeading()
+        } else {
+            languageSwitcher.classList.remove('RU')
+        }
+    } 
+
     arrSlider.forEach((item, index) => {
         if(localStorage.getItem(`Disp block ${index}`)) {
           item.classList.toggle('disabled');
           const itemText = state.blocks[index];
-          document.querySelector(`.${itemText}`).style.display = 'none';
-          //document.querySelector(`.${itemText}`).classList.toggle('hide');
+          document.querySelector(`.${itemText}`).classList.add('hide');
         }
       })
   }
   window.addEventListener('load', getLocalStorage)
-
-
-/*
-
-const displayItems = document.querySelectorAll('.display-item')
-
-displayItems.forEach(function (item) {
-    item.addEventListener('click', function() {
-        const itemNum = item.childNodes[1].classList.value.slice(-1);
-        const itemText = state.blocks[itemNum];
-
-        document.querySelector(`.${itemText}`).classList.toggle('hide')
-        const slider = item.childNodes[2].classList.toggle('disabled');
-
-        console.log(document.querySelector('.disp-input-1').checked) 
-    })
-})
-
-*/
 
   //Фоновое изображение
 
@@ -502,12 +473,17 @@ async function getLinkToImageFromFlickr() {
         
     } else if (city.value === '' && localStorage.getItem('city') !== '') {
         city.value = localStorage.getItem('city')
-    } else if (city.value === 'Minsk' && localStorage.getItem('city') !== '' && languageSwitcher.classList.contains('RU')) {
-        city.value = 'Минск'
+    } else if ((city.value === 'Minsk' || city.value === 'Минск') && localStorage.getItem('city') === '') {
+         if (languageSwitcher.classList.contains('RU')) {
+            city.value = 'Минск'
+         } else {
+            city.value = 'Minsk'
+         }
+        
     }
 
     let whichLang = ''
-    if (languageSwitcher.textContent === 'English') {whichLang = 'EN'}
+    if (!languageSwitcher.classList.contains('RU')) {whichLang = 'EN'}
     else {whichLang = 'RU'}
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${whichLang}&appid=66a8dd4faf814112d2989ac99d776242&units=metric`;
@@ -767,6 +743,7 @@ const displayItems = document.querySelectorAll('.display-item')
 
 displayItems.forEach(function (item) {
     item.addEventListener('click', function() {
+        console.log('click')
         const itemNum = item.childNodes[1].classList.value.slice(-1);
         const itemText = state.blocks[itemNum];
 
@@ -872,6 +849,7 @@ photoFlickr.addEventListener('click', function() {
         photoGit.style.display = 'none';
         photoUnsplash.style.display = 'none';
         photoFlickr.style.display = 'none';
+        languageSwitcher.style.display = 'none';
     }
 
 
