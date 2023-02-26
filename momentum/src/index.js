@@ -1,4 +1,4 @@
-//Настройки
+// SETTINGS
 
 const state = {
     language: 'en',
@@ -10,11 +10,22 @@ const settingsBtn = document.querySelector('.settings-button')
 const settingsBar = document.querySelector('.settings-bar')
 const settingsBoard = document.querySelector('.settings-board')
 
-//открывается меню настроек
+// open-close settings menu
 settingsBtn.addEventListener('click', function(){
     settingsBar.classList.toggle('settings-bar-visible')
 })
-    //Вызов настроек по клику на General
+/*
+document.addEventListener("click", function(event) {
+
+    if (event.target !== settingsBar) {
+        console.log('You clicked outside  the box!');
+    } else {
+        console.log('You clicked inside the box!');
+    }
+})*/
+
+
+// open General settings on click General
     const settingsGeneral = document.getElementById('general')
     settingsGeneral.addEventListener('click', createGeneralHeading)
     settingsGeneral.addEventListener('click', function(){
@@ -22,7 +33,7 @@ settingsBtn.addEventListener('click', function(){
             langBtn.style.display = 'none';
     })
     
-    //создание разметки настроек 
+// create settings layout 
     
     const visibilityItems = document.createElement('ul');
     const h3 = document.createElement('h3');
@@ -47,7 +58,7 @@ settingsBtn.addEventListener('click', function(){
 
     const inputTagsUnsplash = document.createElement('input')
     inputTagsUnsplash.classList.add('input-tags', 'input-Unsplash')
-    inputTagsUnsplash.placeholder = "[Enter tags for photos]"
+    inputTagsUnsplash.placeholder = "[Enter tags separated by spaces]"
     
     const photoFlickr = document.createElement('button')
     photoFlickr.classList.add('btnFlickr', 'photo-button', 'disabledBtn')
@@ -57,7 +68,7 @@ settingsBtn.addEventListener('click', function(){
 
     const inputTagsFlickr = document.createElement('input')
     inputTagsFlickr.classList.add('input-tags', 'input-Flickr')
-    inputTagsFlickr.placeholder = "[Enter tags for photos]"
+    inputTagsFlickr.placeholder = "[Enter tags separated by spaces]"
     
     let spanText = '';
     let i=0;
@@ -88,8 +99,6 @@ settingsBtn.addEventListener('click', function(){
       })
 
     function createGeneralHeading() {
-        console.log('createGeneralHeading')
-
         visibilityItems.classList.add('visibility-items')
         settingsBoard.append(h3)
         settingsBoard.append(h4)
@@ -106,10 +115,7 @@ settingsBtn.addEventListener('click', function(){
         photoFlickr.style.display = 'none';
         inputTagsUnsplash.style.display = 'none';
         inputTagsFlickr.style.display = 'none';
-console.log(langBtn.classList.contains('RU'))
         if(langBtn.classList.contains('RU')) {
-            console.log('render ru')
-
             h3.textContent = 'Основные';
             h4.textContent = 'ПОКАЗАТЬ';
             document.querySelector('.span-0').textContent = 'Время'
@@ -120,7 +126,6 @@ console.log(langBtn.classList.contains('RU'))
             document.querySelector('.span-5').textContent = 'Плеер'
             document.querySelector('.span-6').textContent = 'Список дел'
         } else {
-            console.log('render en')
             h3.textContent = 'General';
             h4.textContent = 'SHOW';
             document.querySelector('.span-0').textContent = 'Time'
@@ -133,7 +138,7 @@ console.log(langBtn.classList.contains('RU'))
         }
     }
     createGeneralHeading()
- 
+
 
 // Translation
 
@@ -176,18 +181,10 @@ function changeLanguage() {
 languageSwitcher.addEventListener('click', changeLanguage)
 
 
-
-
-
-
-
-
-
-
-//часы и календарь
+// TIME & CALENDAR
 const timeField = document.querySelector('.time')
 
-function showTime() { //запускает время
+function showTime() { //starts time 
     const date = new Date();
     const currentDayTime = date.toLocaleTimeString();
     timeField.textContent = currentDayTime;
@@ -197,7 +194,7 @@ function showTime() { //запускает время
 }
 showTime();
 
-function showDate() { //показывает дату
+function showDate() {
 const date = new Date();
 const options = {weekday: 'long', month: 'long', day: 'numeric'};
 let currentDate = '';
@@ -210,7 +207,7 @@ const dateField = document.querySelector('.date')
 dateField.textContent = currentDate;
 }
 
-//Приветствие
+// GREETINGS
 
 function getTimeOfDay() {
     const date = new Date();
@@ -250,16 +247,10 @@ function showGreeting() {
     }
     showGreeting()
 
-/*
-текст приветствия меняется в зависимости от времени суток (утро, день, вечер, ночь) +5
-с 6:00 до 11:59 - Good morning / Доброе утро / Добрай раніцы
-с 12:00 до 17:59 - Good afternoon / Добрый день / Добры дзень
-с 18:00 до 23:59 - Good evening / Добрый вечер / Добры вечар
-с 00:00 до 5:59 - Good night / Доброй/Спокойной ночи / Дабранач
-*/
-//Сохранение имени, города, тегов
+// SAVING NAME, CITY, SETTINGS IN LOCAL STORAGE
 const name = document.querySelector('.name');
 const arrSlider = document.querySelectorAll('.toggle-slider')
+const arrPhotoBtns = document.querySelectorAll('.photo-button')
 
 function setLocalStorage() {
     localStorage.setItem('name', name.value);
@@ -277,6 +268,13 @@ function setLocalStorage() {
               localStorage.setItem(`Disp block ${index}`, 'disabled');
             } else {
               localStorage.removeItem(`Disp block ${index}`);
+        }
+    })
+    arrPhotoBtns.forEach((item, index) => {
+        if(!item.classList.contains('disabledBtn')) {
+              localStorage.setItem(`PhotoBtn ${index}`, 'active');
+            } else {
+              localStorage.removeItem(`PhotoBtn ${index}`);
         }
     })
   }
@@ -311,95 +309,102 @@ function setLocalStorage() {
           document.querySelector(`.${itemText}`).classList.add('hide');
         }
       })
+
+    arrPhotoBtns.forEach((item, index) => {
+        if(localStorage.getItem(`PhotoBtn ${index}`)) {
+          item.classList.remove('disabledBtn');
+        } else {
+            item.classList.add('disabledBtn');
+        }   setBg()
+      })
   }
   window.addEventListener('load', getLocalStorage)
 
-  //Фоновое изображение
+  // BACKGROUND PIC
 
  function getRandomNum(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+    return Math.floor(Math.random() * (max - min + 1)) + min; // max and min incl
   }
   let randomNum = getRandomNum(1, 20) 
   const timeOfDay = getTimeOfDay();
   const img = new Image();
 
-    //Фон из Git
+    // Git background
   function getLinkToImageFromGit() {
     let randomNumStr = randomNum.toString();
     let bgNum = randomNumStr.padStart(2, "0"); 
     img.src = `https://raw.githubusercontent.com/IrinaOsp/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
   }
 
-  //фон из Unsplash
-  function getTagsUnspl(event) {
-    console.log('getTags');
-    if (event.keyCode === 13 && inputTagsUnsplash.value !== '') {
-        console.log('getTags if');
-        async function setBgWithTagsUnsplash() {
-            const url = `https://api.unsplash.com/photos/random?query=${timeOfDay}%2C+${inputTagsUnsplash.value}&client_id=e2077ad31a806c894c460aec8f81bc2af4d09c4f8104ae3177bb809faf0eac17`;
-            console.log(url);
-            const res = await fetch(url);
-            const data = await res.json();
-            img.src = data.urls.regular        
-            img.onload = () => {      
-                document.body.style.backgroundImage = `url(${img.src})`;
-            }; 
-        } setBgWithTagsUnsplash()
+    // Unsplash background  
+
+  async function getLinkToImageFromUnsplash() {
+    let url = '';
+    if (inputTagsUnsplash.value !== '') { //${timeOfDay}%2C+${inputTagsUnsplash.value}
+        let tags = inputTagsFlickr.value;
+        url = `https://api.unsplash.com/photos/random?query=${tags}&client_id=e2077ad31a806c894c460aec8f81bc2af4d09c4f8104ae3177bb809faf0eac17`;
+    } else {
+        url = `https://api.unsplash.com/photos/random?query=${timeOfDay}&client_id=e2077ad31a806c894c460aec8f81bc2af4d09c4f8104ae3177bb809faf0eac17`;
     }
-  }
-        function getTagsFlckr(event) {
-     if (event.keyCode === 13 && inputTagsFlickr.value !== '') {
-        console.log('getTags if flckr');
-        async function setBgWithTagsFlickr() {
-            console.log(inputTagsFlickr.value);
-            randomNum = getRandomNum(0, 99) 
-            let randomNumStr = randomNum.toString();
-            let tags = timeOfDay;
-            const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=fd92c1a76667aac1f64a7051e2c73a7a&tags=${tags}&extras=url_l&format=json&nojsoncallback=1`
-            console.log(url);
-            const res = await fetch(url);
-            const data = await res.json();
-            img.src = data.photos.photo[randomNumStr].url_l       
-            img.onload = () => {      
-                document.body.style.backgroundImage = `url(${img.src})`;
-            }; 
-        } setBgWithTagsFlickr()
-    } 
+    const res = await fetch(url);
+    if (!res.ok) {
+        getLinkToImageFromGit()
+   }
+    const data = await res.json();
+    img.src = data.urls.regular
+    img.onload = () => {      
+        document.body.style.backgroundImage = `url(${img.src})`;
+    }; 
+} 
+
+function getTagsUnspl(event) { 
+    if (event.keyCode === 13) {
+        getLinkToImageFromUnsplash()
+   }
+}
+     // Flickr background
+     async function getLinkToImageFromFlickr() {
+        let url = '';
+        if (inputTagsFlickr.value !== '') {
+            let tags = inputTagsFlickr.value;
+            url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=fd92c1a76667aac1f64a7051e2c73a7a&tags=${tags}&extras=url_h&format=json&nojsoncallback=1`
+        } else {
+            url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=fd92c1a76667aac1f64a7051e2c73a7a&tags=${timeOfDay}&extras=url_h&format=json&nojsoncallback=1`
+        }
+        const res = await fetch(url);
+        if (!res.ok) {
+            getLinkToImageFromGit()
+       }
+        const data = await res.json();
+       randomNum = getRandomNum(0, data.photos.photo.length-1) 
+       let randomNumStr = randomNum.toString();
+       img.src = data.photos.photo[randomNumStr].url_h
+       if (img.src.length==='http://127.0.0.1:5500/src/undefined') {
+        getLinkToImageFromFlickr()
+       } else {
+        img.onload = () => {      
+            document.body.style.backgroundImage = `url(${img.src})`;
+        }; 
+       } 
+    }
+
+   function getTagsFlckr(event) {
+     if (event.keyCode === 13) {
+        getLinkToImageFromFlickr()
+    }
 }
 inputTagsUnsplash.addEventListener('keypress', getTagsUnspl)
 inputTagsFlickr.addEventListener('keypress', getTagsFlckr)
 
 
-
-async function getLinkToImageFromUnsplash() {
-    const url = `https://api.unsplash.com/photos/random?query=${timeOfDay}&client_id=e2077ad31a806c894c460aec8f81bc2af4d09c4f8104ae3177bb809faf0eac17`;
-    const res = await fetch(url);
-    if (!res.ok) {
-        console.log('Unsplash error')
-        getLinkToImageFromGit()
-   }
-    const data = await res.json();
-    img.src = data.urls.regular
-} 
-
-     //фон из Flickr
-async function getLinkToImageFromFlickr() {
-    randomNum = getRandomNum(0, 99) 
-    let randomNumStr = randomNum.toString();
-    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=fd92c1a76667aac1f64a7051e2c73a7a&tags=${timeOfDay}&extras=url_l&format=json&nojsoncallback=1`
-    const res = await fetch(url);
-    const data = await res.json();
-   img.src = data.photos.photo[randomNumStr].url_l
-}
-
   function setBg() {
-    if (photoGit.classList.contains('disabledBtn') === false) {
+    if (!photoGit.classList.contains('disabledBtn')) {
         getLinkToImageFromGit()
-    } else if (photoUnsplash.classList.contains('disabledBtn') === false) {
+    } else if (!photoUnsplash.classList.contains('disabledBtn')) {
         getLinkToImageFromUnsplash() 
-    } else if (photoFlickr.classList.contains('disabledBtn') === false) {
+    } else if (!photoFlickr.classList.contains('disabledBtn')) {
         getLinkToImageFromFlickr()
     }
 
@@ -407,11 +412,9 @@ async function getLinkToImageFromFlickr() {
         document.body.style.backgroundImage = `url(${img.src})`;
     }; 
   }
-  setBg()
-
 
   function getSlideNext() {
-    if (photoGit.classList.contains('disabledBtn') === false) {
+    if (!photoGit.classList.contains('disabledBtn')) {
         if (randomNum < 20) {
             randomNum ++
             setBg()
@@ -419,16 +422,15 @@ async function getLinkToImageFromFlickr() {
             randomNum = 1;
             setBg()
         }
-    } else if (photoFlickr.classList.contains('disabledBtn') === false) {
+    } else if (!photoFlickr.classList.contains('disabledBtn')) {
             setBg()   
-    } else if (photoUnsplash.classList.contains('disabledBtn') === false) {
+    } else if (!photoUnsplash.classList.contains('disabledBtn')) {
         setBg()   
     } 
   }
 
   function getSlidePrev() {
-    console.log('prev')
-    if (photoGit.classList.contains('disabledBtn') === false) {
+    if (!photoGit.classList.contains('disabledBtn')) {
         if (randomNum > 1) {
             randomNum --
             setBg()
@@ -436,13 +438,11 @@ async function getLinkToImageFromFlickr() {
             randomNum = 20;
             setBg()
         }
-    } else if (photoFlickr.classList.contains('disabledBtn') === false) {
+    } else if (!photoFlickr.classList.contains('disabledBtn')) {
             setBg()
-    } else if (photoUnsplash.classList.contains('disabledBtn') === false) {
+    } else if (!photoUnsplash.classList.contains('disabledBtn')) {
         setBg()   
     } 
-
-
   }
 
   const slideNext = document.querySelector('.slide-next')
@@ -450,11 +450,7 @@ async function getLinkToImageFromFlickr() {
   slideNext.addEventListener('click', getSlideNext)
   slidePrev.addEventListener('click', getSlidePrev)
 
-
-
-
-
-  //Погода
+  // WEATHER
   const weatherIcon = document.querySelector('.weather-icon');
   const temperature = document.querySelector('.temperature');
   const weatherDescription = document.querySelector('.weather-description');
@@ -478,8 +474,7 @@ async function getLinkToImageFromFlickr() {
             city.value = 'Минск'
          } else {
             city.value = 'Minsk'
-         }
-        
+         }    
     }
 
     let whichLang = ''
@@ -541,7 +536,7 @@ function errCity() {
 document.addEventListener('DOMContentLoaded', getWeather);
 city.addEventListener('keypress', setCity)
 
- // Цитаты
+ // QUOTES
 
 const quoteChanger = document.querySelector('.change-quote')
 const quote = document.querySelector('.quote-text')
@@ -565,7 +560,7 @@ const author = document.querySelector('.author')
   document.addEventListener('DOMContentLoaded', getQuotes);
   quoteChanger.addEventListener('click', getQuotes)
 
-  //Аудиоплеер
+  // Audio pleer
 
 const playBtn = document.querySelector('.play');
 const playPrevBtn = document.querySelector('.play-prev');
@@ -588,9 +583,7 @@ const songTitles = document.querySelectorAll('.play-item')
 songTitle.innerHTML = songTitles[playNum].innerHTML
 
 function playAudio() {
-    console.log(isPlay)
     if (!isPlay) {
-        console.log('start play')
         isPlay = true; 
         audio.src = playList[playNum].src;
         changeProgressBar()
@@ -598,7 +591,6 @@ function playAudio() {
         playBtn.classList.add('pause')
         changeActiveSong()
     } else {
-        console.log('stop play')
         isPlay = false;
         audio.pause();
         playBtn.classList.remove('pause')
@@ -611,17 +603,14 @@ function playPrev() {
     } else {
         playNum = playList.length-1;
     }
-    console.log(playNum)
 
     if (!isPlay) {
-        console.log('prev start play')
         isPlay = true; 
         audio.src = playList[playNum].src;
         audio.play();
         playBtn.classList.add('pause')
         changeActiveSong()
     } else {
-        console.log('prev play')
         audio.src = playList[playNum].src;
         audio.play();
         changeActiveSong()
@@ -636,14 +625,12 @@ function playNext() {
     }
 
     if (!isPlay) {
-        console.log('next start play')
         isPlay = true; 
         audio.src = playList[playNum].src;
         audio.play();
         playBtn.classList.add('pause')
         changeActiveSong()
     } else {
-        console.log('next play')
         audio.src = playList[playNum].src;
         audio.play();
         changeActiveSong()   
@@ -667,10 +654,10 @@ playBtn.addEventListener('click', playAudio);
 playPrevBtn.addEventListener('click', playPrev);
 playNextBtn.addEventListener('click', playNext);
 
-//Прогресс бар продвинутого плеера
+// Progress bar 
 const progressBar = document.getElementById('progress-bar')
 
-// задает аудио при загрузке
+// Set audio onload
 audio.src = playList[playNum].src;
 
 function updateProgressValue() {
@@ -702,7 +689,7 @@ function changeProgressBar() {
 };
 progressBar.addEventListener("change", changeProgressBar);
 
-//Звук
+// Sound
 const volumeSlider = document.querySelector('#soundVolume');
 const muteVolume = document.querySelector('.muteButton') 
 
@@ -712,12 +699,10 @@ function muteSound() {
     } else {
         changeVolume()
     }
-    
     muteVolume.classList.toggle('mute')
 }
 
 muteVolume.addEventListener("click", muteSound);
-
 
 function changeVolume() {
     audio.volume = volumeSlider.value;
@@ -725,35 +710,19 @@ function changeVolume() {
 volumeSlider.addEventListener("change", changeVolume);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //Настройка видимости блоков
+  //Blocks visibility settings
 const displayItems = document.querySelectorAll('.display-item')
 
 displayItems.forEach(function (item) {
     item.addEventListener('click', function() {
-        console.log('click')
         const itemNum = item.childNodes[1].classList.value.slice(-1);
         const itemText = state.blocks[itemNum];
 
         document.querySelector(`.${itemText}`).classList.toggle('hide')
         const slider = item.childNodes[2].classList.toggle('disabled');
-
-        console.log(document.querySelector('.disp-input-1').checked) 
     })
 })
-    //Настройки языка
+    //Language settings
 
 const settingsLanguage = document.getElementById('language')
 settingsLanguage.addEventListener('click', showLangSettings)
@@ -772,9 +741,7 @@ function showLangSettings() {
  langBtn.style.display = 'block';
 }
 
-
-
-    //Настройки источника фото
+    //Photo source settings
 
 const settingsPhotoSource = document.getElementById('photo-source')
 settingsPhotoSource.addEventListener('click', showPhotoSource)
@@ -831,7 +798,7 @@ photoFlickr.addEventListener('click', function() {
     }
 })
 
-    //Настройки ToDo
+    //ToDo settings
 
     const settingsToDo = document.getElementById('todo')
     settingsToDo.addEventListener('click', showToDo)

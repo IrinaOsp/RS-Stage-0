@@ -16,7 +16,7 @@ body {
   font-size: 16px;
   color: #fff;
   text-align: center;
-  background: /*url("../assets/img/bg.jpg")*/ center/cover, rgba(0, 0, 0, 0.5);
+  background: center/cover, rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
 }
@@ -252,7 +252,7 @@ div, time, date {
 
 .input-tags {
   margin-top: 5px;
-
+  width: 200px;
 }
 
 .weather {
@@ -554,6 +554,35 @@ color: #585858;
   min-height: 20px;
 }
 
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  align-items: center;
+
+
+}
+
+.git-link {
+  width: 30px;
+  height: 30px;
+  background: url(../assets/svg/iconmonstr-github-1.svg) center no-repeat;
+  filter: invert(100%);
+  background-blend-mode: multiply;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.RS-link {
+  width: 60px;
+  height: 30px;
+  background: url(../assets/svg/rs_school_js.svg) center no-repeat;
+  filter: invert(100%);
+  background-blend-mode: multiply;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .time {
     min-height: 80px;
@@ -572,5 +601,93 @@ color: #585858;
   .name {
     font-size: 32px;
     padding: 5px;
+  }
+}
+
+@media (max-width: 464px) {
+  body {
+    min-width: 200px;
+    min-height: 100vh;
+    font-size: 14px;
+    background: center/cover, rgba(0, 0, 0, 0.5), no-repeat;
+  }
+
+  .header {
+    padding: 10px;
+  }
+
+  .player {
+    margin-right: 10px;
+  }
+
+  .weather {
+    width: 140px;
+  }
+
+  .city {
+    width: 120px;
+  }
+
+  .time {
+    min-height: 70px;
+    font-size: 60px;    
+  }
+
+  .date {
+    margin-bottom: 10px;
+  }
+
+  .greeting-container {
+    min-height: 30px;
+    font-size: 24px;
+  }
+
+  .greeting-text {
+    padding: 5px;
+  }
+
+  .name {
+    font-size: 24px;
+  }
+
+  .quote {
+    font-size: 14px;
+  }
+
+  .footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 377px) {
+  .player-controls {
+    width: 140px;
+  }
+  .weather {
+    width: 120px;
+    font-size: 14px;
+  }
+  .city {
+    width: 100px;
+}
+  .time {
+    min-height: 55px;
+    font-size: 45px;    
+  }
+  .date {
+    font-size: 20px;
+  }
+  .greeting {
+    font-size: 20px;
+  }
+  .git-link {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .RS-link {
+    width: 35px;
+    height: 20px;
   }
 }
