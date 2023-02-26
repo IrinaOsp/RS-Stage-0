@@ -311,12 +311,18 @@ function setLocalStorage() {
       })
 
     arrPhotoBtns.forEach((item, index) => {
+        let i=0
         if(localStorage.getItem(`PhotoBtn ${index}`)) {
           item.classList.remove('disabledBtn');
         } else {
             item.classList.add('disabledBtn');
-        }   setBg()
+            i++;
+        }
       })
+      if (document.querySelectorAll('.disabledBtn').length === 3) {
+        photoGit.classList.remove('disabledBtn')
+      }
+      setBg()
   }
   window.addEventListener('load', getLocalStorage)
 
@@ -333,6 +339,9 @@ function setLocalStorage() {
 
     // Git background
   function getLinkToImageFromGit() {
+    if (randomNum >20 ) {
+        randomNum = getRandomNum(1, 20) 
+    }
     let randomNumStr = randomNum.toString();
     let bgNum = randomNumStr.padStart(2, "0"); 
     img.src = `https://raw.githubusercontent.com/IrinaOsp/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
@@ -343,14 +352,20 @@ function setLocalStorage() {
   async function getLinkToImageFromUnsplash() {
     let url = '';
     if (inputTagsUnsplash.value !== '') { //${timeOfDay}%2C+${inputTagsUnsplash.value}
-        let tags = inputTagsFlickr.value;
+        let tags = inputTagsUnsplash.value;
         url = `https://api.unsplash.com/photos/random?query=${tags}&client_id=e2077ad31a806c894c460aec8f81bc2af4d09c4f8104ae3177bb809faf0eac17`;
     } else {
         url = `https://api.unsplash.com/photos/random?query=${timeOfDay}&client_id=e2077ad31a806c894c460aec8f81bc2af4d09c4f8104ae3177bb809faf0eac17`;
     }
     const res = await fetch(url);
     if (!res.ok) {
+        inputTagsUnsplash.placeholder = "Rate Limit Exceeded!"
+        inputTagsUnsplash.style.backgroundColor = '#ff000036'
+        photoUnsplash.classList.remove('disabledBtn')
+        photoGit.classList.add('disabledBtn')
         getLinkToImageFromGit()
+   } else {
+    inputTagsUnsplash.style.backgroundColor = 'none';
    }
     const data = await res.json();
     img.src = data.urls.regular
@@ -407,7 +422,6 @@ inputTagsFlickr.addEventListener('keypress', getTagsFlckr)
     } else if (!photoFlickr.classList.contains('disabledBtn')) {
         getLinkToImageFromFlickr()
     }
-
     img.onload = () => {      
         document.body.style.backgroundImage = `url(${img.src})`;
     }; 
@@ -417,15 +431,15 @@ inputTagsFlickr.addEventListener('keypress', getTagsFlckr)
     if (!photoGit.classList.contains('disabledBtn')) {
         if (randomNum < 20) {
             randomNum ++
-            setBg()
+            getLinkToImageFromGit()
         } else {
             randomNum = 1;
-            setBg()
+            getLinkToImageFromGit()
         }
     } else if (!photoFlickr.classList.contains('disabledBtn')) {
-            setBg()   
+        getLinkToImageFromFlickr()   
     } else if (!photoUnsplash.classList.contains('disabledBtn')) {
-        setBg()   
+        getLinkToImageFromUnsplash()   
     } 
   }
 
@@ -433,15 +447,15 @@ inputTagsFlickr.addEventListener('keypress', getTagsFlckr)
     if (!photoGit.classList.contains('disabledBtn')) {
         if (randomNum > 1) {
             randomNum --
-            setBg()
+            getLinkToImageFromGit()
         } else {
             randomNum = 20;
-            setBg()
+            getLinkToImageFromGit()
         }
     } else if (!photoFlickr.classList.contains('disabledBtn')) {
-            setBg()
+        getLinkToImageFromFlickr()
     } else if (!photoUnsplash.classList.contains('disabledBtn')) {
-        setBg()   
+        getLinkToImageFromUnsplash()   
     } 
   }
 
