@@ -664,6 +664,31 @@ function changeActiveSong() {
     songTitle.innerHTML = songTitles[playNum].innerHTML
 }
 
+songTitles.forEach(function (item, index) {
+    item.addEventListener('click', function() {
+        console.log(index)
+        if (!isPlay) {
+            isPlay = true; 
+            playNum = index;
+            audio.src = playList[playNum].src;
+            console.log(audio.src)
+            audio.play();
+            playBtn.classList.add('pause')
+            changeActiveSong()
+        } else if (isPlay && playNum === index) {
+            isPlay = false;
+            audio.pause();
+            playBtn.classList.remove('pause')
+        } else if (isPlay && playNum !== index) {
+            playNum = index;
+            audio.src = playList[playNum].src;
+            console.log(audio.src)
+            audio.play();
+            changeActiveSong()
+        }
+    })
+})
+
 playBtn.addEventListener('click', playAudio);
 playPrevBtn.addEventListener('click', playPrev);
 playNextBtn.addEventListener('click', playNext);
